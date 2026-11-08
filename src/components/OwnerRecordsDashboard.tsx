@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Download, RefreshCw, Clock, Heart, Sparkles, ArrowLeft } from 'lucide-react';
+import { Download, RefreshCw, Trash2, Clock, Heart, Sparkles, ArrowLeft } from 'lucide-react';
 
 interface ActivityEvent {
   id: string;
@@ -44,6 +44,8 @@ export const OwnerRecordsDashboard: React.FC<OwnerRecordsDashboardProps> = ({
 }) => {
   const [records, setRecords] = useState<RecordsStore>({ events: [], submissions: [] });
   const [loading, setLoading] = useState(true);
+  const [confirmReset, setConfirmReset] = useState(false);
+  const [resetting, setResetting] = useState(false);
 
   const fetchRecords = async () => {
     setLoading(true);
@@ -57,6 +59,21 @@ export const OwnerRecordsDashboard: React.FC<OwnerRecordsDashboardProps> = ({
       // Ignore network errors
     } finally {
       setLoading(false);
+    }
+  };
+
+  const handleResetAllRecords = async () => {
+    setResetting(true);
+    try {
+      const res = await fetch('/api/records/reset', { method: 'POST' });
+      if (res.ok) {
+        setRecords({ events: [], submissions: [] });
+        setConfirmReset(false);
+      }
+    } catch {
+      // Ignore network errors
+    } finally {
+      setResetting(false);
     }
   };
 
@@ -94,14 +111,49 @@ export const OwnerRecordsDashboard: React.FC<OwnerRecordsDashboardProps> = ({
             </p>
           </div>
 
-          <button
-            type="button"
-            onClick={fetchRecords}
-            className="inline-flex items-center gap-2 rounded-xl bg-amber-400 px-4 py-2.5 text-xs font-bold text-[#180B10] hover:bg-amber-300 cursor-pointer"
-          >
-            <RefreshCw className={`h-4 w-4 ${loading ? 'animate-spin' : ''}`} />
-            <span>Refresh Records</span>
-          </button>
+          <div className="flex flex-wrap items-center gap-2.5">
+            {confirmReset ? (
+              <div className="flex items-center gap-2 rounded-xl border border-rose-500/50 bg-rose-950/60 px-3 py-1.5">
+                <span className="text-xs font-semibold text-rose-200">Clear all records?</span>
+                <button
+                  type="button"
+                  data-testid="confirm-reset-records-btn"
+                  disabled={resetting}
+                  onClick={handleResetAllRecords}
+                  className="rounded-lg bg-rose-500 px-3 py-1 text-xs font-bold text-white hover:bg-rose-400 cursor-pointer"
+                >
+                  {resetting ? 'Clearing...' : 'Yes, Reset All'}
+                </button>
+                <button
+                  type="button"
+                  data-testid="cancel-reset-records-btn"
+                  onClick={() => setConfirmReset(false)}
+                  className="rounded-lg border border-rose-400/30 px-2.5 py-1 text-xs text-rose-200 hover:bg-rose-900/50 cursor-pointer"
+                >
+                  Cancel
+                </button>
+              </div>
+            ) : (
+              <button
+                type="button"
+                data-testid="reset-all-records-btn"
+                onClick={() => setConfirmReset(true)}
+                className="inline-flex items-center gap-2 rounded-xl border border-rose-500/40 bg-rose-950/40 px-4 py-2.5 text-xs font-bold text-rose-200 hover:bg-rose-900/60 cursor-pointer"
+              >
+                <Trash2 className="h-4 w-4 text-rose-400" />
+                <span>Reset All Records</span>
+              </button>
+            )}
+
+            <button
+              type="button"
+              onClick={fetchRecords}
+              className="inline-flex items-center gap-2 rounded-xl bg-amber-400 px-4 py-2.5 text-xs font-bold text-[#180B10] hover:bg-amber-300 cursor-pointer"
+            >
+              <RefreshCw className={`h-4 w-4 ${loading ? 'animate-spin' : ''}`} />
+              <span>Refresh Records</span>
+            </button>
+          </div>
         </div>
 
         {/* Saved Final Cards Section */}

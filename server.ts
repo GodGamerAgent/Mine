@@ -151,6 +151,15 @@ async function startServer() {
     res.json(store);
   });
 
+  // Reset / clear all saved submissions and activity logs
+  const handleResetRecords = (_req: express.Request, res: express.Response) => {
+    const emptyStore: RecordsStore = { events: [], submissions: [] };
+    writeRecords(emptyStore);
+    res.json({ ok: true, store: emptyStore });
+  };
+  app.delete('/api/records', handleResetRecords);
+  app.post('/api/records/reset', handleResetRecords);
+
   // Serve generated static images in /src/assets both in dev and production
   const assetsPath = path.join(process.cwd(), 'src', 'assets');
   if (fs.existsSync(assetsPath)) {

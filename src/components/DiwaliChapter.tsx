@@ -17,7 +17,7 @@ interface DiwaliChapterProps {
   onOpenSurprise: () => void;
 }
 
-const DIWALI_HERO_IMAGE = '/src/assets/images/diwali_golden_diyas_1794114709400.jpg';
+const DIWALI_HERO_IMAGE = '/src/assets/images/diwali_couple_romance_1794124604090.jpg';
 
 interface StanzaCard {
   id: string;
@@ -291,7 +291,7 @@ export const DiwaliChapter: React.FC<DiwaliChapterProps> = ({
               {!imgError ? (
                 <img
                   src={DIWALI_HERO_IMAGE}
-                  alt="Hand-painted terracotta Diwali diyas glowing among fresh marigold petals on burgundy silk"
+                  alt="Romantic couple celebrating Diwali together holding a glowing diya surrounded by marigold garlands and fairy lights"
                   referrerPolicy="no-referrer"
                   onError={() => setImgError(true)}
                   className="h-full min-h-[360px] w-full object-cover"

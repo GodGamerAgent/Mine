@@ -56,7 +56,8 @@ export default function App() {
   const [activeChapter, setActiveChapter] = useState<ChapterView>(() => {
     if (typeof window !== 'undefined') {
       const params = new URLSearchParams(window.location.search);
-      if (params.get('owner') === '1') {
+      const path = window.location.pathname.toLowerCase();
+      if (params.get('owner') === '1' || path.includes('owner-vault')) {
         return 'owner';
       }
       const step = params.get('step');
