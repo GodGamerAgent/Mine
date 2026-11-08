@@ -17,8 +17,6 @@ interface DiwaliChapterProps {
   onOpenSurprise: () => void;
 }
 
-const DIWALI_HERO_IMAGE = '/src/assets/images/diwali_couple_romance_1794124604090.jpg';
-
 interface StanzaCard {
   id: string;
   numberLabel: string;
@@ -74,7 +72,6 @@ export const DiwaliChapter: React.FC<DiwaliChapterProps> = ({
   onLightDiya,
   onOpenSurprise,
 }) => {
-  const [imgError, setImgError] = useState(false);
   const [stanzaDeck, setStanzaDeck] = useState<StanzaCard[]>(INITIAL_STANZA_DECK);
   const [deckTapCount, setDeckTapCount] = useState(0);
 
@@ -253,15 +250,21 @@ export const DiwaliChapter: React.FC<DiwaliChapterProps> = ({
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
           className="min-h-[82vh] flex flex-col justify-between"
         >
-          <div className="grid grid-cols-1 items-stretch gap-10 lg:grid-cols-12">
-            {/* Left Column: 3D Floating 'For Mine' Poetic Opening */}
+          <div className="mx-auto max-w-3xl">
+            {/* Centered 3D Floating 'For Mine' Poetic Opening (Photo Removed) */}
             <Tilt3DCard
               intensity={6}
               floatDelay={0.1}
-              className="flex flex-col justify-center rounded-2xl border border-amber-500/20 bg-[#180C12]/75 p-8 backdrop-blur-sm card-3d-surface lg:col-span-7"
+              className="flex flex-col justify-center rounded-3xl border border-amber-500/30 bg-[#180C12]/85 p-8 text-center backdrop-blur-md card-3d-surface sm:p-12"
             >
+              <div className="mx-auto mb-4 inline-flex items-center gap-2 rounded-full border border-amber-400/40 bg-amber-500/15 px-4 py-1 text-xs font-semibold uppercase tracking-widest text-amber-300">
+                <Sparkles className="h-3.5 w-3.5" />
+                <span>Happy Diwali 2026 · Exclusive For You</span>
+                <Sparkles className="h-3.5 w-3.5" />
+              </div>
+
               <h1
-                className="font-serif-display text-6xl font-semibold leading-[1.05] tracking-tight text-[#FFFBF5] drop-shadow-[0_6px_18px_rgba(245,158,11,0.25)] sm:text-7xl lg:text-[5.25rem]"
+                className="font-serif-display text-5xl font-semibold leading-[1.05] tracking-tight text-[#FFFBF5] drop-shadow-[0_6px_18px_rgba(245,158,11,0.25)] sm:text-6xl lg:text-7xl"
                 style={{ textWrap: 'balance' }}
               >
                 For Mine
@@ -271,44 +274,14 @@ export const DiwaliChapter: React.FC<DiwaliChapterProps> = ({
                 Happy Diwali, My Love — I Love You More Than All the Lights in the Sky.
               </p>
 
-              <p className="mt-6 max-w-[58ch] text-base leading-relaxed text-[#E6D7C8]">
+              <p className="mx-auto mt-6 max-w-[58ch] text-base leading-relaxed text-[#E6D7C8] sm:text-lg">
                 Tonight, a million earthen diyas flicker and float across the night, yet none of them illuminate my life the way your smile does. Every flame tonight is a quiet thank-you to the universe for making you mine.
               </p>
 
               <div className="mt-8 pt-6 border-t border-amber-500/20">
-                <blockquote className="font-serif-display text-2xl italic leading-snug text-amber-200">
+                <blockquote className="font-serif-display text-2xl italic leading-snug text-amber-200 sm:text-3xl">
                   “I love you—not only for the light you bring into my brightest days, but for being the warm flame that makes every night feel like home.”
                 </blockquote>
-              </div>
-            </Tilt3DCard>
-
-            {/* Right Column: 3D Floating Visual Container */}
-            <Tilt3DCard
-              intensity={10}
-              floatDelay={0.4}
-              className="relative overflow-hidden rounded-2xl border border-amber-400/35 bg-[#1D1016] card-3d-surface lg:col-span-5"
-            >
-              {!imgError ? (
-                <img
-                  src={DIWALI_HERO_IMAGE}
-                  alt="Romantic couple celebrating Diwali together holding a glowing diya surrounded by marigold garlands and fairy lights"
-                  referrerPolicy="no-referrer"
-                  onError={() => setImgError(true)}
-                  className="h-full min-h-[360px] w-full object-cover"
-                />
-              ) : (
-                <div className="flex h-full min-h-[360px] w-full flex-col items-center justify-center bg-gradient-to-br from-[#2B141D] via-[#1B0C12] to-[#3B1D11] p-8 text-center">
-                  <Flame className="h-12 w-12 text-amber-400 animate-flame" />
-                  <p className="mt-4 font-serif-display text-2xl text-amber-200">
-                    For Mine · Shubh Deepavali
-                  </p>
-                </div>
-              )}
-              <div className="absolute inset-0 bg-gradient-to-t from-[#12090D] via-[#12090D]/30 to-transparent" />
-              <div className="absolute bottom-0 inset-x-0 p-6">
-                <p className="font-serif-display text-xl text-[#FFFBF5]">
-                  “In a sky crowded with constellations, my eyes still look only for you.”
-                </p>
               </div>
             </Tilt3DCard>
           </div>
@@ -435,39 +408,40 @@ export const DiwaliChapter: React.FC<DiwaliChapterProps> = ({
           </Tilt3DCard>
         </motion.section>
 
-        {/* SECTION 3: FLOATING DRAGGABLE 3D CANDLE ON THE SIDE + DIYAS ARRANGED IN A ROUND CIRCULAR ORDER */}
+        {/* SECTION 3: FLOATING DRAGGABLE 3D CANDLE + DIYAS ARRANGED IN A ROUND CIRCULAR ORDER (RESPONSIVE FOR MOBILE & DESKTOP) */}
         <motion.section
           initial={{ opacity: 0, y: 60 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: false, amount: 0.2 }}
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-          className="mt-28 pt-16 border-t border-amber-500/15"
+          className="mt-24 sm:mt-28 pt-12 sm:pt-16 border-t border-amber-500/15"
         >
-          <div className="flex flex-col items-center text-center">
+          <div className="flex flex-col items-center text-center px-2">
             <div className="text-xs tracking-wide text-amber-300/90">
               3D Draggable Side Candle &amp; Diya Circle · {progress.litCount} of {progress.totalCount} Diyas Lit
             </div>
             <h2
-              className="mt-2 font-serif-display text-4xl font-semibold text-[#FFFBF5] sm:text-5xl"
+              className="mt-2 font-serif-display text-3xl sm:text-4xl lg:text-5xl font-semibold text-[#FFFBF5]"
               style={{ textWrap: 'balance' }}
             >
-              Drag the Floating 3D Candle From the Side to Light Each Diya
+              Drag the Floating 3D Candle to Light Each Diya
             </h2>
-            <p className="mt-3 max-w-[64ch] text-sm text-[#D6C3B3]">
-              Grab the glowing 3D candle floating on the left side and drag its flame over the circle of diyas to light them one by one (or tap any diya directly). Watch each secret vow card pop up and tuck itself to the right side!
+            <p className="mt-3 max-w-[64ch] text-xs sm:text-sm text-[#D6C3B3]">
+              Drag the glowing 3D candle flame over the circle of diyas to light them one by one (or tap any diya directly). Watch each secret vow card pop up!
             </p>
           </div>
 
-          {/* STAGE: FLOATING DRAGGABLE 3D SIDE CANDLE (NO BACKGROUND, ABOVE DIYAS) + LARGER DIYAS IN ROUND CIRCLE */}
-          <div className="relative mx-auto mt-12 grid grid-cols-1 items-center gap-8 lg:grid-cols-12">
-            {/* LEFT SIDE: PURE FLOATING DRAGGABLE 3D CANDLE (NO BOX BACKGROUND, Z-50 ABOVE DIYAS) */}
+          {/* STAGE: CANDLE & ROUND DIYA CIRCLE */}
+          <div className="relative mx-auto mt-8 sm:mt-12 flex flex-col items-center gap-6 lg:grid lg:grid-cols-12 lg:items-center lg:gap-8">
+            {/* FLOATING DRAGGABLE 3D CANDLE (CENTERED ON MOBILE, LEFT ON DESKTOP) */}
             <div className="relative z-50 flex flex-col items-center justify-center lg:col-span-3">
-              <div className="inline-flex items-center gap-1.5 text-xs font-semibold text-amber-300/90 mb-2">
+              <div className="inline-flex items-center gap-1.5 text-xs font-semibold text-amber-300/90 mb-1 sm:mb-2">
                 <Move className="h-3.5 w-3.5" />
-                <span>Drag Candle to Diyas →</span>
+                <span className="hidden sm:inline">Drag Candle to Diyas →</span>
+                <span className="sm:hidden">Drag Candle onto Any Diya ↓</span>
               </div>
 
-              {/* DRAGGABLE COMPACT 3D WAX CANDLE WITH TRANSPARENT BACKGROUND & HIGH Z-INDEX */}
+              {/* DRAGGABLE COMPACT 3D WAX CANDLE */}
               <motion.div
                 ref={candleRef}
                 data-testid="floating-side-candle"
@@ -481,7 +455,7 @@ export const DiwaliChapter: React.FC<DiwaliChapterProps> = ({
                 whileHover={{ scale: 1.08 }}
                 whileDrag={{ scale: 1.14, rotateZ: 6 }}
                 style={{ zIndex: 90 }}
-                className="relative z-50 flex flex-col items-center justify-center p-2 cursor-grab active:cursor-grabbing select-none"
+                className="relative z-50 flex flex-col items-center justify-center p-2 cursor-grab active:cursor-grabbing select-none touch-none"
               >
                 {/* 3D Multi-Layered Candle Flame */}
                 <div className="relative flex flex-col items-center">
@@ -520,48 +494,47 @@ export const DiwaliChapter: React.FC<DiwaliChapterProps> = ({
                   <div className="-mt-1 h-2 w-0.5 rounded-full bg-amber-950" />
                 </div>
 
-                {/* Compact 3D Cylindrical Wax Pillar Body (No Background Box) */}
+                {/* Compact 3D Cylindrical Wax Pillar Body */}
                 <div className="relative flex flex-col items-center">
                   <div className="z-10 h-2.5 w-10 rounded-full border border-amber-200/70 bg-gradient-to-r from-amber-200 via-amber-50 to-amber-300 shadow-inner" />
-                  <div className="-mt-1.5 relative h-14 w-10 rounded-b-xl border-x border-b border-amber-300/40 bg-gradient-to-r from-[#D97706] via-[#FEF3C7] to-[#B45309] shadow-[inset_-5px_-4px_12px_rgba(120,53,15,0.55),0_12px_24px_rgba(0,0,0,0.75)]">
+                  <div className="-mt-1.5 relative h-12 w-9 sm:h-14 sm:w-10 rounded-b-xl border-x border-b border-amber-300/40 bg-gradient-to-r from-[#D97706] via-[#FEF3C7] to-[#B45309] shadow-[inset_-5px_-4px_12px_rgba(120,53,15,0.55),0_12px_24px_rgba(0,0,0,0.75)]">
                     <div className="absolute left-1.5 top-0.5 h-5 w-1 rounded-full bg-amber-100/90" />
-                    <div className="absolute left-4 top-0.5 h-8 w-1.5 rounded-full bg-amber-50/90" />
-                    <div className="absolute right-2 top-0.5 h-6 w-1 rounded-full bg-amber-200/85" />
+                    <div className="absolute left-4 top-0.5 h-7 sm:h-8 w-1.5 rounded-full bg-amber-50/90" />
+                    <div className="absolute right-2 top-0.5 h-5 sm:h-6 w-1 rounded-full bg-amber-200/85" />
                   </div>
-                  <div className="-mt-0.5 h-2.5 w-14 rounded-full border border-amber-400/60 bg-gradient-to-r from-amber-700 via-amber-300 to-amber-800 shadow-md" />
+                  <div className="-mt-0.5 h-2.5 w-12 sm:w-14 rounded-full border border-amber-400/60 bg-gradient-to-r from-amber-700 via-amber-300 to-amber-800 shadow-md" />
                 </div>
 
-                <span className="mt-2 text-[11px] font-semibold text-amber-200 drop-shadow">
+                <span className="mt-1.5 text-[11px] font-semibold text-amber-200 drop-shadow">
                   {isDraggingCandle ? 'Touch Any Diya!' : 'Drag 3D Candle'}
                 </span>
               </motion.div>
             </div>
 
-            {/* RIGHT SIDE: CIRCULAR / ROUND ORDER OF LARGER 3D DIYAS (Z-20 SO CANDLE FLOATS ABOVE THEM) */}
-            <div className="relative z-20 lg:col-span-9">
+            {/* CIRCULAR / ROUND ORDER OF 3D DIYAS (SCALED FOR MOBILE SCREEN WIDTH) */}
+            <div className="relative z-20 w-full overflow-hidden py-2 sm:py-4 lg:col-span-9">
               <div
                 data-testid="round-diya-circle"
-                className="relative mx-auto h-[580px] w-full max-w-[640px] flex items-center justify-center"
+                className="relative mx-auto h-[380px] w-[340px] max-w-full sm:h-[500px] sm:w-[500px] lg:h-[580px] lg:w-[620px] flex items-center justify-center"
               >
                 {/* Glowing Decorative Circular Orbit Rings */}
-                <div className="pointer-events-none absolute h-[460px] w-[460px] rounded-full border border-dashed border-amber-400/35 shadow-[0_0_70px_rgba(245,158,11,0.14)_inset]" />
-                <div className="pointer-events-none absolute h-[210px] w-[210px] rounded-full border border-amber-500/20 bg-amber-500/[0.03] flex flex-col items-center justify-center p-6 text-center">
-                  <Sparkles className="h-6 w-6 text-amber-300/80" />
-                  <span className="mt-2 font-serif-display text-2xl font-semibold text-amber-200">
+                <div className="pointer-events-none absolute h-[270px] w-[270px] sm:h-[390px] sm:w-[390px] lg:h-[460px] lg:w-[460px] rounded-full border border-dashed border-amber-400/35 shadow-[0_0_70px_rgba(245,158,11,0.14)_inset]" />
+                <div className="pointer-events-none absolute h-[130px] w-[130px] sm:h-[180px] sm:w-[180px] lg:h-[210px] lg:w-[210px] rounded-full border border-amber-500/20 bg-amber-500/[0.03] flex flex-col items-center justify-center p-2 sm:p-6 text-center">
+                  <Sparkles className="h-4 w-4 sm:h-6 sm:w-6 text-amber-300/80" />
+                  <span className="mt-0.5 font-serif-display text-base sm:text-2xl font-semibold text-amber-200">
                     {progress.litCount} / {progress.totalCount} Lit
                   </span>
-                  <span className="mt-1 text-[11px] text-amber-100/70">
-                    Bring the floating candle over each diya
+                  <span className="text-[8px] sm:text-[11px] text-amber-100/70">
+                    Touch flame or tap
                   </span>
                 </div>
 
-                {/* 5 LARGER FLOATING 3D DIYAS ARRANGED IN A ROUND CIRCLE */}
+                {/* 5 FLOATING 3D DIYAS ARRANGED IN A RESPONSIVE ROUND CIRCLE */}
                 {diyas.map((diya, index) => {
                   const angleDeg = ROUND_ANGLES_DEG[index % ROUND_ANGLES_DEG.length];
                   const angleRad = (angleDeg * Math.PI) / 180;
-                  const radiusPx = 225;
-                  const xPos = Math.round(Math.cos(angleRad) * radiusPx);
-                  const yPos = Math.round(Math.sin(angleRad) * radiusPx);
+                  const cosVal = Math.cos(angleRad);
+                  const sinVal = Math.sin(angleRad);
 
                   return (
                     <motion.button
@@ -571,8 +544,8 @@ export const DiwaliChapter: React.FC<DiwaliChapterProps> = ({
                       }}
                       type="button"
                       style={{
-                        left: `calc(50% + ${xPos}px)`,
-                        top: `calc(50% + ${yPos}px)`,
+                        left: `calc(50% + var(--circle-radius, 120px) * ${cosVal})`,
+                        top: `calc(50% + var(--circle-radius, 120px) * ${sinVal})`,
                       }}
                       initial={{ opacity: 0, scale: 0.7 }}
                       whileInView={{ opacity: 1, scale: 1 }}
@@ -582,34 +555,34 @@ export const DiwaliChapter: React.FC<DiwaliChapterProps> = ({
                       onClick={() => triggerDiyaIgnition(diya)}
                       aria-pressed={diya.lit}
                       aria-label={`Light ${diya.label} with 3D candle`}
-                      className={`-translate-x-1/2 -translate-y-1/2 absolute z-20 flex w-44 flex-col items-center rounded-2xl border p-4 text-center transition-shadow cursor-pointer card-3d-surface ${
+                      className={`[--circle-radius:120px] sm:[--circle-radius:180px] lg:[--circle-radius:220px] -translate-x-1/2 -translate-y-1/2 absolute z-20 flex w-24 sm:w-36 lg:w-44 flex-col items-center rounded-xl sm:rounded-2xl border p-1.5 sm:p-3 lg:p-4 text-center transition-shadow cursor-pointer card-3d-surface ${
                         diya.lit
-                          ? 'border-amber-300 bg-gradient-to-b from-[#331722] to-[#1A0B11] shadow-[0_0_32px_rgba(251,191,36,0.4)]'
+                          ? 'border-amber-300 bg-gradient-to-b from-[#331722] to-[#1A0B11] shadow-[0_0_20px_rgba(251,191,36,0.4)]'
                           : 'border-amber-500/35 bg-[#180C12]/95 hover:border-amber-400/75'
                       }`}
                     >
-                      <span className="text-[11px] font-medium text-amber-300/90">
+                      <span className="text-[8px] sm:text-[10px] lg:text-[11px] font-medium text-amber-300/90 truncate max-w-full">
                         {diya.label}
                       </span>
 
-                      {/* Larger 3D Clay Diya with Flame */}
-                      <div className="my-2.5 flex flex-col items-center">
-                        <div className="h-9 flex items-end justify-center">
+                      {/* 3D Clay Diya with Flame */}
+                      <div className="my-1 sm:my-2 lg:my-2.5 flex flex-col items-center">
+                        <div className="h-5 sm:h-8 lg:h-9 flex items-end justify-center">
                           {diya.lit ? (
                             <motion.div
                               initial={{ scale: 0, opacity: 0 }}
                               animate={{ scale: 1, opacity: 1 }}
                               transition={{ type: 'spring', stiffness: 340, damping: 16 }}
                             >
-                              <Flame className="h-9 w-9 animate-flame text-amber-400 fill-amber-300 drop-shadow-[0_0_14px_rgba(251,191,36,0.98)]" />
+                              <Flame className="h-5 w-5 sm:h-8 sm:w-8 lg:h-9 lg:w-9 animate-flame text-amber-400 fill-amber-300 drop-shadow-[0_0_14px_rgba(251,191,36,0.98)]" />
                             </motion.div>
                           ) : (
-                            <div className="h-3 w-1.5 rounded-full bg-amber-200/40" />
+                            <div className="h-2 w-1 sm:h-3 sm:w-1.5 rounded-full bg-amber-200/40" />
                           )}
                         </div>
-                        {/* Larger 3D Sculpted Terracotta Bowl */}
+                        {/* 3D Sculpted Terracotta Bowl */}
                         <div
-                          className={`h-8 w-24 rounded-b-full border-t-2 shadow-inner transition-colors ${
+                          className={`h-4 w-12 sm:h-7 sm:w-20 lg:h-8 lg:w-24 rounded-b-full border-t-2 shadow-inner transition-colors ${
                             diya.lit
                               ? 'border-amber-300 bg-gradient-to-r from-[#9A3412] via-[#D97706] to-[#7C2D12]'
                               : 'border-amber-500/40 bg-gradient-to-r from-[#4B221B] via-[#6D3227] to-[#2B110E]'
@@ -617,8 +590,8 @@ export const DiwaliChapter: React.FC<DiwaliChapterProps> = ({
                         />
                       </div>
 
-                      <span className="text-xs font-semibold text-amber-100">
-                        {diya.lit ? 'Lit! Tap Vow' : 'Drag Candle Here'}
+                      <span className="text-[9px] sm:text-xs font-semibold text-amber-100">
+                        {diya.lit ? 'Lit!' : 'Light'}
                       </span>
                     </motion.button>
                   );
