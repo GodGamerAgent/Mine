@@ -48,6 +48,238 @@ export interface BlushMeterStats {
   missingSteps: string[];
 }
 
+export interface NoRainState {
+  count: number;
+  targetCount: number;
+  buttonLabel: string;
+  promptText: string;
+  headline: string;
+  subtext: string;
+  motivationLine: string;
+  isPeak: boolean;
+  progressPercent: number;
+}
+
+export const NO_RAIN_BUTTON_LABEL = 'Hope for No Rain Tomorrow';
+
+const RAIN_CLICK_STEPS: Array<{
+  headline: string;
+  subtext: string;
+  motivationLine: string;
+}> = [
+  // 0 clicks
+  {
+    headline: "ma'am. What about the rain?",
+    subtext: 'Try clicking "Hope for No Rain Tomorrow" 30 times to manifest clear skies for our date!',
+    motivationLine: 'Start tapping, pretty girl—your manifestation has power over tomorrow’s sky!',
+  },
+  // 1
+  {
+    headline: 'Ooh, first wish sent straight to the clouds!',
+    subtext: 'One sweet tap from you and the sky is already paying attention.',
+    motivationLine: 'Keep going... your manifestation has power!',
+  },
+  // 2
+  {
+    headline: "Wait, look how eagerly you're tapping already!",
+    subtext: 'Two clicks in and I can already picture that cute smile on your face.',
+    motivationLine: 'Don’t stop now—every tap from your fingers makes him fall harder.',
+  },
+  // 3
+  {
+    headline: 'Do you like him so much',
+    subtext: 'Already bribing the weather gods just so nothing delays seeing him tomorrow?',
+    motivationLine: 'Keep clicking, gorgeous—your crush on him is clearing the clouds!',
+  },
+  // 4
+  {
+    headline: 'Do you like him so much',
+    subtext: 'Four taps! Someone really cannot wait to hold his hand on Monday.',
+    motivationLine: 'Your manifestation is working... the rainclouds are starting to blush!',
+  },
+  // 5
+  {
+    headline: "Admit it, you're smiling at your screen right now!",
+    subtext: 'Five clicks in and your eyes are already shining thinking about tomorrow.',
+    motivationLine: 'Keep going, my Ashwi—5 down, 25 more to lock in pure sunshine!',
+  },
+  // 6
+  {
+    headline: 'The raindrops just heard your name and started backing away!',
+    subtext: 'Even the weather knows better than to stand between you and your man.',
+    motivationLine: 'Tap a little faster, baby—your love energy is unstoppable!',
+  },
+  // 7
+  {
+    headline: 'Wait... your finger is clicking so fast!',
+    subtext: 'Is your heart beating this fast when you think about seeing him too?',
+    motivationLine: 'Keep going... your manifestation has power and he’s all yours tomorrow!',
+  },
+  // 8
+  {
+    headline: 'Are you trying to break the speed record just to see his face?',
+    subtext: 'Eight taps! He is going to tease you so much when he sees how hard you clicked.',
+    motivationLine: 'Don’t slow down now, cutie—every click brings Monday closer!',
+  },
+  // 9
+  {
+    headline: 'Look at that dedication from the prettiest girl alive!',
+    subtext: 'Nine clicks! The dark clouds are officially packing their bags.',
+    motivationLine: 'Keep tapping, sweetheart—your wish is the sky’s command!',
+  },
+  // 10
+  {
+    headline: 'Is he that important',
+    subtext: '10/30 clicks! Be honest—is seeing him tomorrow really your #1 priority?',
+    motivationLine: 'One-third of the way there! Keep going... your manifestation has power!',
+  },
+  // 11
+  {
+    headline: 'Is he that important',
+    subtext: 'Eleven clicks! You wouldn’t tap this hard for anyone else on earth.',
+    motivationLine: 'Keep going, baby girl—he’s already dreaming about how stunning you’ll look!',
+  },
+  // 12
+  {
+    headline: 'Tell the truth... how many times did you think about him today?',
+    subtext: 'Twelve taps! Every single click is a little confession that you miss him.',
+    motivationLine: 'Your manifestation power is rising—keep those pretty fingers tapping!',
+  },
+  // 13
+  {
+    headline: 'Even the sky knows who rules your heart!',
+    subtext: 'Thirteen clicks! Cloud coverage is dropping fast because of you.',
+    motivationLine: 'Keep going, my love—no storm can compete with how much you want him!',
+  },
+  // 14
+  {
+    headline: 'Not even a single drizzle is allowed near you two tomorrow!',
+    subtext: 'Fourteen taps! You are single-handedly rewriting tomorrow’s weather forecast.',
+    motivationLine: 'Almost halfway to 30! Keep manifesting that perfect romantic evening!',
+  },
+  // 15
+  {
+    headline: 'Halfway to 30! Look at you fighting the clouds for your man!',
+    subtext: '15/30 clicks! If kissing you burned calories, he’d still never get tired.',
+    motivationLine: 'Halfway mark unlocked—keep going, your manifestation has real power!',
+  },
+  // 16
+  {
+    headline: 'Even the weather forecast is blushing right now!',
+    subtext: 'Sixteen taps! The meteorologists have never seen love this stubborn.',
+    motivationLine: 'Keep tapping, hottie—you’re making the sun come out early just for us!',
+  },
+  // 17
+  {
+    headline: 'You really want that uninterrupted Monday date with him, huh?',
+    subtext: 'Seventeen clicks! No umbrella needed when your love is this warm.',
+    motivationLine: 'Don’t stop now—every click guarantees an extra tight hug tomorrow!',
+  },
+  // 18
+  {
+    headline: 'Look how cute you are when you want something this badly!',
+    subtext: 'Eighteen taps! He’s already planning how to make you blush tomorrow night.',
+    motivationLine: 'Keep going... your manifestation has power and only 12 clicks left!',
+  },
+  // 19
+  {
+    headline: 'God forbid a single raindrop ruins your outfit tomorrow!',
+    subtext: 'Nineteen clicks! The sky is officially on VIP duty for our date.',
+    motivationLine: 'Tap away, my queen—you’re turning Monday into pure magic!',
+  },
+  // 20
+  {
+    headline: 'Are you that madly in love with him',
+    subtext: '20/30 clicks! Only someone head-over-heels in love clicks this hard for no rain!',
+    motivationLine: '20 down, 10 to go! Keep going... your manifestation is on fire!',
+  },
+  // 21
+  {
+    headline: 'Are you that madly in love with him',
+    subtext: 'Twenty-one taps! Your heart has clearly made up its mind about him.',
+    motivationLine: 'Keep clicking, my love—only 9 more taps to reach peak romance!',
+  },
+  // 22
+  {
+    headline: 'Wait... are you blushing while reading these lines?',
+    subtext: 'Twenty-two clicks! I bet you’re biting your lip trying not to smile.',
+    motivationLine: 'Your manifestation power is at 73%—keep tapping those sweet fingers!',
+  },
+  // 23
+  {
+    headline: 'He is the luckiest guy alive to have you clicking this hard for him!',
+    subtext: 'Twenty-three taps! Every raincloud within 100 miles just surrendered.',
+    motivationLine: 'Only 7 clicks left—keep going, baby, you’re almost at the peak!',
+  },
+  // 24
+  {
+    headline: 'Your love is literally bossing the entire atmosphere around!',
+    subtext: 'Twenty-four clicks! The stars are already polishing themselves for Monday night.',
+    motivationLine: 'Keep going... your manifestation has power—just 6 more taps!',
+  },
+  // 25
+  {
+    headline: '25 Clicks! You are officially obsessed with your man (and he loves it)!',
+    subtext: 'Only 5 taps left! Can you feel how close tomorrow’s date is getting?',
+    motivationLine: 'Final 5 clicks! Pour all your love into these last taps, my Ashwi!',
+  },
+  // 26
+  {
+    headline: 'Just 4 more clicks! The sun just signed an exclusive contract with you!',
+    subtext: 'Twenty-six taps! Zero percent chance of rain, 1000% chance of romance.',
+    motivationLine: 'Keep tapping, gorgeous—4 more clicks to seal our clear skies!',
+  },
+  // 27
+  {
+    headline: '3 more clicks! Can you already feel him looking into your eyes tomorrow?',
+    subtext: 'Twenty-seven taps! My heart is racing just thinking about seeing you.',
+    motivationLine: 'Almost there—your manifestation power is about to hit 100%!',
+  },
+  // 28
+  {
+    headline: 'Only 2 clicks left! Your fingers deserve a kiss for working this hard!',
+    subtext: 'Twenty-eight taps! Every cloud has officially left the chat.',
+    motivationLine: 'Two more taps, my love—show the sky who’s boss!',
+  },
+  // 29
+  {
+    headline: 'One last click to reach 30 and seal eternal sunshine for our date!',
+    subtext: 'Twenty-nine taps! Tap one final time to unleash maximum love power!',
+    motivationLine: 'One final tap, baby—make this 30th click count!',
+  },
+  // 30 (Capped Peak)
+  {
+    headline: 'Okay...you guys love is at the peak. No rain can stop you guys seeing',
+    subtext: '30/30 Peak Love Weather Shield Activated: Not a single raindrop dares to get in the way tomorrow!',
+    motivationLine: '30/30 Manifestation Complete! Your power worked—nothing can stop us tomorrow ❤️✨',
+  },
+];
+
+export function getNoRainState(rawCount: number): NoRainState {
+  const targetCount = 30;
+  const count = Math.min(targetCount, Math.max(0, Math.floor(rawCount)));
+  const isPeak = count >= targetCount;
+  const progressPercent = Math.min(100, Math.round((count / targetCount) * 100));
+  const promptText =
+    count < targetCount
+      ? `Try clicking "${NO_RAIN_BUTTON_LABEL}" 30 times! (${count}/${targetCount} clicks)`
+      : `30/30 Clicks Complete! Peak Manifestation Reached ✨`;
+
+  const step = RAIN_CLICK_STEPS[count] ?? RAIN_CLICK_STEPS[RAIN_CLICK_STEPS.length - 1];
+
+  return {
+    count,
+    targetCount,
+    buttonLabel: NO_RAIN_BUTTON_LABEL,
+    promptText,
+    headline: step.headline,
+    subtext: step.subtext,
+    motivationLine: step.motivationLine,
+    isPeak,
+    progressPercent,
+  };
+}
+
 export const CORRECT_PASSWORD_OPTION = 'Oiee';
 
 export const PASSWORD_OPTIONS: string[] = [
@@ -126,28 +358,28 @@ const STUBBORN_RESPONSES: Array<{
     subtext: 'The Diwali lights are still glowing and the universe strictly forbids declining a Monday date with me.',
     yesLabel: 'Yes, take me on our Monday date!',
     noLabel: 'Still thinking...',
-    offset: { x: 48, y: -18 },
+    offset: { x: 18, y: -10 },
   },
   {
     message: 'Nice try, my love! "No" is officially out of stock for 9th Nov 2026.',
     subtext: 'I already practiced how I am going to look at you across the table without blinking.',
     yesLabel: 'Okay YES, let us plan Monday!',
     noLabel: 'Are you sure?',
-    offset: { x: 92, y: 24 },
+    offset: { x: -18, y: 12 },
   },
   {
     message: 'Stubbornness level: Maximum Romantic Override.',
     subtext: 'Look how warm and inviting that "Yes" button looks. It was practically tailor-made for you.',
     yesLabel: 'Yes! I love you, let us go!',
     noLabel: 'Wait really?',
-    offset: { x: 64, y: -26 },
+    offset: { x: 22, y: -12 },
   },
   {
     message: 'Even the marigolds and candlelight voted 100-to-0 in favor of YES.',
     subtext: 'Every time you resist, I only fall a little deeper in love with how playful you are.',
     yesLabel: 'YES, 9th Nov 2026 is ours!',
     noLabel: 'You are so stubborn!',
-    offset: { x: 108, y: 18 },
+    offset: { x: -16, y: 10 },
   },
   {
     message: 'Alright, I have rewritten the laws of physics: both buttons now mean YES.',
@@ -196,7 +428,7 @@ export function getStubbornState(noCount: number): StubbornState {
   const clampedIndex = Math.min(Math.max(0, noCount), STUBBORN_RESPONSES.length - 1);
   const entry = STUBBORN_RESPONSES[clampedIndex];
   const noConvertedToYes = clampedIndex === STUBBORN_RESPONSES.length - 1;
-  const yesScale = Number(Math.min(1 + clampedIndex * 0.07, 1.35).toFixed(2));
+  const yesScale = Number(Math.min(1 + clampedIndex * 0.04, 1.16).toFixed(2));
 
   return {
     noCount,

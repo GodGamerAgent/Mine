@@ -6,6 +6,7 @@ import {
   PASSWORD_OPTIONS,
   INTRUDER_REDIRECT_MESSAGE,
   ALL_DIYAS_LIT_POPUP_MESSAGE,
+  NO_RAIN_BUTTON_LABEL,
   verifyAshwiPassword,
   rotateDeck,
   toggleDiyaState,
@@ -13,12 +14,58 @@ import {
   lightAllDiyas,
   getDiyaProgress,
   getStubbornState,
+  getNoRainState,
   formatRomanticTimeLabel,
   validateDatePlan,
   calculateBlushMeter,
   getPhotoCounts,
   type DatePlanSubmission,
 } from './dateLogic';
+
+test('getNoRainState is capped at 30 clicks with 30 flirty motivating lines and exact headlines', () => {
+  const zeroState = getNoRainState(0);
+  assert.equal(zeroState.buttonLabel, 'Hope for No Rain Tomorrow');
+  assert.equal(NO_RAIN_BUTTON_LABEL, 'Hope for No Rain Tomorrow');
+  assert.equal(zeroState.targetCount, 30);
+  assert.equal(zeroState.headline, "ma'am. What about the rain?");
+  assert.ok(zeroState.promptText.includes('30'));
+  assert.equal(zeroState.isPeak, false);
+
+  const step1 = getNoRainState(1);
+  assert.equal(step1.motivationLine, 'Keep going... your manifestation has power!');
+
+  const trigger3 = getNoRainState(3);
+  assert.equal(trigger3.headline, 'Do you like him so much');
+
+  const trigger10 = getNoRainState(10);
+  assert.equal(trigger10.headline, 'Is he that important');
+
+  const trigger20 = getNoRainState(20);
+  assert.equal(trigger20.headline, 'Are you that madly in love with him');
+  assert.equal(trigger20.isPeak, false);
+
+  // Verify every single step 1..30 has a non-empty motivationLine
+  for (let i = 1; i <= 30; i++) {
+    const s = getNoRainState(i);
+    assert.ok(s.motivationLine.length > 10, `Step ${i} should have a flirty motivation line`);
+  }
+
+  const peak30 = getNoRainState(30);
+  assert.equal(
+    peak30.headline,
+    'Okay...you guys love is at the peak. No rain can stop you guys seeing'
+  );
+  assert.equal(peak30.isPeak, true);
+  assert.equal(peak30.count, 30);
+
+  // Capped at 30 even if a higher number is passed
+  const capped = getNoRainState(45);
+  assert.equal(capped.count, 30);
+  assert.equal(
+    capped.headline,
+    'Okay...you guys love is at the peak. No rain can stop you guys seeing'
+  );
+});
 
 test('verifyAshwiPassword only accepts Oiee and rejects all other options', () => {
   assert.equal(CORRECT_PASSWORD_OPTION, 'Oiee');

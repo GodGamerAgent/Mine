@@ -17,6 +17,19 @@
   h1, h2, h3, .font-serif-display {
     font-family: var(--font-display);
   }
+
+  button,
+  button *,
+  [role="button"],
+  [role="button"] *,
+  label,
+  a {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+    -webkit-touch-callout: none;
+    -webkit-tap-highlight-color: transparent;
+  }
 }
 
 @keyframes flicker {

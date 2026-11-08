@@ -130,14 +130,14 @@ export const DateKeepsakeCard: React.FC<DateKeepsakeCardProps> = ({
                   role="dialog"
                   aria-modal="true"
                   aria-labelledby="popup-card-ready-title"
-                  className="w-full max-w-lg rounded-3xl border-2 border-amber-300/75 bg-gradient-to-b from-[#2B0714] via-[#4C0519] to-[#1F040D] p-8 text-center text-[#FFF8F6] shadow-[0_28px_70px_rgba(0,0,0,0.65)] sm:p-10"
+                  className="w-full max-w-lg rounded-3xl border-2 border-amber-300/75 bg-gradient-to-b from-[#2B0714] via-[#4C0519] to-[#1F040D] p-6 text-center text-[#FFF8F6] shadow-[0_28px_70px_rgba(0,0,0,0.65)] sm:p-10"
                 >
-                  <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl border border-amber-300/40 bg-rose-500/20 text-amber-300 shadow-inner">
-                    <Heart className="h-7 w-7 fill-[#E11D48] text-[#E11D48] animate-heartbeat-fast" />
+                  <div className="mx-auto flex h-12 w-12 sm:h-14 sm:w-14 items-center justify-center rounded-2xl border border-amber-300/40 bg-rose-500/20 text-amber-300 shadow-inner">
+                    <Heart className="h-6 w-6 sm:h-7 sm:w-7 fill-[#E11D48] text-[#E11D48] animate-heartbeat-fast" />
                   </div>
 
-                  <div className="mt-4 inline-flex items-center gap-1.5 rounded-full border border-amber-300/35 bg-white/10 px-3.5 py-1 text-xs font-semibold text-amber-300">
-                    <Sparkles className="h-3.5 w-3.5" />
+                  <div className="mt-4 inline-flex flex-wrap items-center justify-center gap-1.5 rounded-full border border-amber-300/35 bg-white/10 px-3.5 py-1 text-[11px] sm:text-xs font-semibold text-amber-300">
+                    <Sparkles className="h-3.5 w-3.5 shrink-0" />
                     <span>
                       {photoCounts.totalCount} Photo{photoCounts.totalCount === 1 ? '' : 's'} Sealed · Blush Rate {blushStats.score}%
                     </span>
@@ -145,24 +145,24 @@ export const DateKeepsakeCard: React.FC<DateKeepsakeCardProps> = ({
 
                   <h2
                     id="popup-card-ready-title"
-                    className="mt-3 font-serif-display text-3xl font-bold text-white sm:text-4xl"
+                    className="mt-3 font-serif-display text-2xl font-bold text-white sm:text-4xl"
                   >
                     Send This Card to Me &amp; Put It on Your Story!
                   </h2>
 
-                  <p className="mt-3 text-sm leading-relaxed text-rose-100/90 sm:text-base">
+                  <p className="mt-3 text-xs leading-relaxed text-rose-100/90 sm:text-base">
                     Your official <strong>Monday, 9th Nov 2026 Date Card</strong> is ready with all your details and photos! Download your card below, <strong>send it to me</strong> so I can see what you planned, and <strong>put it on your Story</strong>!
                   </p>
 
                   {/* THE ONLY BUTTON IN THE POP-UP: DOWNLOAD CARD */}
-                  <div className="mt-7 flex justify-center">
+                  <div className="mt-6 sm:mt-7 flex justify-center">
                     <button
                       type="button"
                       data-testid="popup-download-card-btn"
                       onClick={handleDownloadCard}
-                      className="inline-flex items-center justify-center gap-2.5 rounded-2xl bg-[#E11D48] px-8 py-4 text-sm font-bold text-white shadow-[0_14px_34px_rgba(225,29,72,0.5)] transition-transform hover:scale-105 hover:bg-[#BE123C] cursor-pointer"
+                      className="inline-flex w-full sm:w-auto items-center justify-center gap-2.5 rounded-2xl bg-[#E11D48] px-6 py-3.5 sm:px-8 sm:py-4 text-sm font-bold text-white shadow-[0_14px_34px_rgba(225,29,72,0.5)] transition-transform hover:scale-105 hover:bg-[#BE123C] cursor-pointer"
                     >
-                      <Download className="h-5 w-5" />
+                      <Download className="h-5 w-5 shrink-0" />
                       <span>Download Card</span>
                     </button>
                   </div>
@@ -173,9 +173,9 @@ export const DateKeepsakeCard: React.FC<DateKeepsakeCardProps> = ({
           document.body
         )}
 
-      <div className="mx-auto max-w-[1080px] px-6 py-12 md:py-16">
+      <div className="mx-auto max-w-[1080px] px-4 py-8 sm:px-6 sm:py-12 md:py-16">
         {/* Top bar with Back Intercept */}
-        <div className="mb-6 flex items-center justify-between">
+        <div className="mb-6 flex flex-wrap items-center justify-between gap-2">
           <button
             type="button"
             onClick={onTryToGoBack}
@@ -185,7 +185,7 @@ export const DateKeepsakeCard: React.FC<DateKeepsakeCardProps> = ({
             <span>Go Back</span>
           </button>
 
-          <div className="flex items-center gap-2 text-xs text-rose-800/80">
+          <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 text-xs text-rose-800/80">
             <span>For Mine · Final Keepsake Card</span>
             <span aria-hidden="true">·</span>
             <span>{savedToServer ? 'Saved & Sent to Him ✓' : 'Monday, 9th Nov 2026'}</span>
@@ -264,37 +264,37 @@ export const DateKeepsakeCard: React.FC<DateKeepsakeCardProps> = ({
           <Tilt3DCard
             intensity={5}
             data-testid="final-master-card"
-            className="overflow-hidden rounded-3xl border-2 border-amber-300/70 bg-gradient-to-b from-[#2B0714] via-[#4C0519] to-[#1F040D] p-8 text-[#FFF8F6] shadow-[0_32px_70px_rgba(76,5,25,0.45)] card-3d-love sm:p-12"
+            className="overflow-hidden rounded-3xl border-2 border-amber-300/70 bg-gradient-to-b from-[#2B0714] via-[#4C0519] to-[#1F040D] p-5 text-[#FFF8F6] shadow-[0_32px_70px_rgba(76,5,25,0.45)] card-3d-love sm:p-8 md:p-12"
           >
             {/* Card Top Header */}
-            <div className="flex flex-col justify-between gap-6 border-b border-amber-400/30 pb-8 md:flex-row md:items-center">
+            <div className="flex flex-col justify-between gap-5 border-b border-amber-400/30 pb-6 sm:pb-8 md:flex-row md:items-center">
               <div>
-                <div className="text-xs font-semibold uppercase tracking-widest text-amber-300">
+                <div className="text-[11px] sm:text-xs font-semibold uppercase tracking-widest text-amber-300">
                   For Mine · Official Romantic Date Pass · {photoCounts.totalCount} Photo{photoCounts.totalCount === 1 ? '' : 's'} Added
                 </div>
-                <h2 className="mt-2 font-serif-display text-4xl font-bold text-white sm:text-5xl">
+                <h2 className="mt-2 font-serif-display text-3xl font-bold text-white sm:text-5xl">
                   Monday, 9th November 2026
                 </h2>
-                <p className="mt-1 text-sm text-rose-200">
+                <p className="mt-1 text-xs sm:text-sm text-rose-200">
                   {submission.timeSlotTitle || timeInfo.atmosphereLabel}
                 </p>
               </div>
 
-              <div className="flex flex-wrap items-center gap-6 rounded-2xl border border-amber-400/35 bg-white/10 px-6 py-4 backdrop-blur-sm">
+              <div className="flex flex-wrap items-center gap-4 sm:gap-6 rounded-2xl border border-amber-400/35 bg-white/10 px-4 py-3.5 sm:px-6 sm:py-4 backdrop-blur-sm">
                 <div>
-                  <div className="text-[11px] font-semibold uppercase tracking-wider text-rose-200">
+                  <div className="text-[10px] sm:text-[11px] font-semibold uppercase tracking-wider text-rose-200">
                     Selected Time
                   </div>
-                  <div className="mt-0.5 font-mono text-3xl font-bold text-white tabular-nums">
+                  <div className="mt-0.5 font-mono text-2xl sm:text-3xl font-bold text-white tabular-nums">
                     {timeInfo.formatted12h}
                   </div>
                 </div>
-                <div className="h-10 w-px bg-amber-300/30" />
+                <div className="hidden sm:block h-10 w-px bg-amber-300/30" />
                 <div>
-                  <div className="text-[11px] font-semibold uppercase tracking-wider text-amber-300">
+                  <div className="text-[10px] sm:text-[11px] font-semibold uppercase tracking-wider text-amber-300">
                     His Blush Rate
                   </div>
-                  <div className="mt-0.5 font-mono text-3xl font-bold text-amber-300 tabular-nums">
+                  <div className="mt-0.5 font-mono text-2xl sm:text-3xl font-bold text-amber-300 tabular-nums">
                     {blushStats.score}% OVERFLOW!
                   </div>
                 </div>

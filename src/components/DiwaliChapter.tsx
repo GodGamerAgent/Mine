@@ -186,40 +186,40 @@ export const DiwaliChapter: React.FC<DiwaliChapterProps> = ({
                   role="dialog"
                   aria-modal="true"
                   aria-labelledby="ashwi-popup-heading"
-                  className="w-full max-w-lg rounded-3xl border-2 border-amber-400/80 bg-gradient-to-b from-[#2B101B] via-[#1E0B13] to-[#14070C] p-10 text-center text-[#FFFBF5] shadow-[0_0_70px_rgba(245,158,11,0.45)] sm:p-12"
+                  className="w-full max-w-lg rounded-3xl border-2 border-amber-400/80 bg-gradient-to-b from-[#2B101B] via-[#1E0B13] to-[#14070C] p-6 text-center text-[#FFFBF5] shadow-[0_0_70px_rgba(245,158,11,0.45)] sm:p-12"
                 >
                   <div className="mx-auto flex items-center justify-center gap-3">
-                    <Flame className="h-8 w-8 animate-flame fill-amber-300 text-amber-400" />
-                    <Heart className="h-10 w-10 animate-heartbeat-fast fill-[#E11D48] text-[#E11D48]" />
-                    <Flame className="h-8 w-8 animate-flame fill-amber-300 text-amber-400" />
+                    <Flame className="h-7 w-7 sm:h-8 sm:w-8 animate-flame fill-amber-300 text-amber-400" />
+                    <Heart className="h-9 w-9 sm:h-10 sm:w-10 animate-heartbeat-fast fill-[#E11D48] text-[#E11D48]" />
+                    <Flame className="h-7 w-7 sm:h-8 sm:w-8 animate-flame fill-amber-300 text-amber-400" />
                   </div>
 
-                  <div className="mt-4 inline-flex items-center gap-1.5 rounded-full border border-amber-400/40 bg-amber-500/15 px-4 py-1 text-xs font-semibold uppercase tracking-widest text-amber-300">
-                    <Sparkles className="h-3.5 w-3.5" />
+                  <div className="mt-4 inline-flex flex-wrap items-center justify-center gap-1.5 rounded-full border border-amber-400/40 bg-amber-500/15 px-3.5 py-1 text-[11px] sm:text-xs font-semibold uppercase tracking-widest text-amber-300">
+                    <Sparkles className="h-3.5 w-3.5 shrink-0" />
                     <span>All 5 Diwali Flames Lit</span>
-                    <Sparkles className="h-3.5 w-3.5" />
+                    <Sparkles className="h-3.5 w-3.5 shrink-0" />
                   </div>
 
                   <h2
                     id="ashwi-popup-heading"
                     data-testid="ashwi-popup-heading"
-                    className="mt-5 font-serif-display text-5xl font-bold tracking-tight text-amber-200 drop-shadow-[0_4px_20px_rgba(251,191,36,0.4)] sm:text-6xl"
+                    className="mt-4 sm:mt-5 font-serif-display text-4xl font-bold tracking-tight text-amber-200 drop-shadow-[0_4px_20px_rgba(251,191,36,0.4)] sm:text-6xl"
                   >
                     {ALL_DIYAS_LIT_POPUP_MESSAGE}
                   </h2>
 
-                  <p className="mt-4 text-sm leading-relaxed text-[#E6D7C8] sm:text-base">
+                  <p className="mt-3 sm:mt-4 text-xs leading-relaxed text-[#E6D7C8] sm:text-base">
                     Every single flame in our circle is glowing just for you. Scroll down a little further—something special is waiting for you below!
                   </p>
 
-                  <div className="mt-8 flex justify-center">
+                  <div className="mt-6 sm:mt-8 flex justify-center">
                     <button
                       type="button"
                       data-testid="close-ashwi-popup-btn"
                       onClick={() => setShowAshwiPopup(false)}
-                      className="inline-flex items-center gap-2 rounded-2xl bg-amber-400 px-8 py-3.5 text-sm font-bold text-[#180B10] shadow-[0_12px_30px_rgba(245,158,11,0.45)] transition-transform hover:scale-105 hover:bg-amber-300 cursor-pointer"
+                      className="inline-flex w-full sm:w-auto items-center justify-center gap-2 rounded-2xl bg-amber-400 px-6 py-3.5 sm:px-8 text-xs sm:text-sm font-bold text-[#180B10] shadow-[0_12px_30px_rgba(245,158,11,0.45)] transition-transform hover:scale-105 hover:bg-amber-300 cursor-pointer"
                     >
-                      <Heart className="h-4 w-4 fill-[#180B10]" />
+                      <Heart className="h-4 w-4 shrink-0 fill-[#180B10]" />
                       <span>Continue to Your Surprise</span>
                     </button>
                   </div>
@@ -242,44 +242,44 @@ export const DiwaliChapter: React.FC<DiwaliChapterProps> = ({
         }}
       />
 
-      <div className="relative z-10 mx-auto max-w-[1160px] px-6 pb-28 pt-12 md:pt-20">
+      <div className="relative z-10 mx-auto max-w-[1160px] px-4 pb-20 pt-8 sm:px-6 sm:pb-28 sm:pt-12 md:pt-20">
         {/* SECTION 1: 3D FLOATING HERO ("For Mine" + Cute Scroll Down Sign) */}
         <motion.section
           initial={{ opacity: 0, y: 28 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-          className="min-h-[82vh] flex flex-col justify-between"
+          className="min-h-[75vh] sm:min-h-[82vh] flex flex-col justify-between"
         >
-          <div className="mx-auto max-w-3xl">
+          <div className="mx-auto w-full max-w-3xl">
             {/* Centered 3D Floating 'For Mine' Poetic Opening (Photo Removed) */}
             <Tilt3DCard
               intensity={6}
               floatDelay={0.1}
-              className="flex flex-col justify-center rounded-3xl border border-amber-500/30 bg-[#180C12]/85 p-8 text-center backdrop-blur-md card-3d-surface sm:p-12"
+              className="flex flex-col justify-center rounded-3xl border border-amber-500/30 bg-[#180C12]/85 p-6 text-center backdrop-blur-md card-3d-surface sm:p-12"
             >
-              <div className="mx-auto mb-4 inline-flex items-center gap-2 rounded-full border border-amber-400/40 bg-amber-500/15 px-4 py-1 text-xs font-semibold uppercase tracking-widest text-amber-300">
-                <Sparkles className="h-3.5 w-3.5" />
+              <div className="mx-auto mb-3 sm:mb-4 inline-flex flex-wrap items-center justify-center gap-1.5 sm:gap-2 rounded-full border border-amber-400/40 bg-amber-500/15 px-3 py-1 text-[10px] sm:text-xs font-semibold uppercase tracking-widest text-amber-300">
+                <Sparkles className="h-3 w-3 sm:h-3.5 sm:w-3.5 shrink-0" />
                 <span>Happy Diwali 2026 · Exclusive For You</span>
-                <Sparkles className="h-3.5 w-3.5" />
+                <Sparkles className="h-3 w-3 sm:h-3.5 sm:w-3.5 shrink-0" />
               </div>
 
               <h1
-                className="font-serif-display text-5xl font-semibold leading-[1.05] tracking-tight text-[#FFFBF5] drop-shadow-[0_6px_18px_rgba(245,158,11,0.25)] sm:text-6xl lg:text-7xl"
+                className="font-serif-display text-4xl font-semibold leading-[1.05] tracking-tight text-[#FFFBF5] drop-shadow-[0_6px_18px_rgba(245,158,11,0.25)] sm:text-6xl lg:text-7xl"
                 style={{ textWrap: 'balance' }}
               >
                 For Mine
               </h1>
 
-              <p className="mt-4 font-serif-display text-2xl italic text-amber-300 sm:text-3xl">
+              <p className="mt-3 sm:mt-4 font-serif-display text-xl italic text-amber-300 sm:text-3xl">
                 Happy Diwali, My Love — I Love You More Than All the Lights in the Sky.
               </p>
 
-              <p className="mx-auto mt-6 max-w-[58ch] text-base leading-relaxed text-[#E6D7C8] sm:text-lg">
+              <p className="mx-auto mt-4 sm:mt-6 max-w-[58ch] text-sm leading-relaxed text-[#E6D7C8] sm:text-lg">
                 Tonight, a million earthen diyas flicker and float across the night, yet none of them illuminate my life the way your smile does. Every flame tonight is a quiet thank-you to the universe for making you mine.
               </p>
 
-              <div className="mt-8 pt-6 border-t border-amber-500/20">
-                <blockquote className="font-serif-display text-2xl italic leading-snug text-amber-200 sm:text-3xl">
+              <div className="mt-6 sm:mt-8 pt-5 sm:pt-6 border-t border-amber-500/20">
+                <blockquote className="font-serif-display text-xl italic leading-snug text-amber-200 sm:text-3xl">
                   “I love you—not only for the light you bring into my brightest days, but for being the warm flame that makes every night feel like home.”
                 </blockquote>
               </div>
@@ -291,17 +291,17 @@ export const DiwaliChapter: React.FC<DiwaliChapterProps> = ({
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5, duration: 0.6 }}
-            className="mt-12 flex flex-col items-center justify-center text-center"
+            className="mt-8 sm:mt-12 flex flex-col items-center justify-center text-center"
           >
             <a
               href="#stanza-deck-section"
               aria-label="Scroll down to read your poem"
-              className="animate-float-3d group inline-flex flex-col items-center gap-2 rounded-2xl border border-amber-400/40 bg-[#1E0F16]/95 px-6 py-3.5 text-amber-200 shadow-[0_16px_32px_rgba(0,0,0,0.5)] transition-all hover:scale-105 hover:border-amber-400"
+              className="animate-float-3d group inline-flex flex-col items-center gap-1.5 sm:gap-2 rounded-2xl border border-amber-400/40 bg-[#1E0F16]/95 px-5 py-3 sm:px-6 sm:py-3.5 text-amber-200 shadow-[0_16px_32px_rgba(0,0,0,0.5)] transition-all hover:scale-105 hover:border-amber-400"
             >
               <div className="flex items-center gap-2 text-xs font-medium tracking-wide">
-                <Heart className="h-3.5 w-3.5 fill-rose-400 text-rose-400 animate-bounce" />
+                <Heart className="h-3.5 w-3.5 shrink-0 fill-rose-400 text-rose-400 animate-bounce" />
                 <span>Psst... scroll down slowly, my love</span>
-                <Sparkles className="h-3.5 w-3.5 text-amber-300" />
+                <Sparkles className="h-3.5 w-3.5 shrink-0 text-amber-300" />
               </div>
               <motion.div
                 animate={{ y: [0, 5, 0] }}
@@ -320,13 +320,13 @@ export const DiwaliChapter: React.FC<DiwaliChapterProps> = ({
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: false, amount: 0.25 }}
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-          className="mt-28 flex flex-col items-center justify-center py-12"
+          className="mt-16 sm:mt-28 flex flex-col items-center justify-center py-8 sm:py-12"
         >
-          <Tilt3DCard intensity={9} className="relative h-[400px] w-full max-w-[650px] sm:h-[370px]">
+          <Tilt3DCard intensity={9} className="relative h-[430px] w-full max-w-[650px] sm:h-[380px]">
             <AnimatePresence mode="popLayout">
               {stanzaDeck.map((card, index) => {
                 const isTopCard = index === 0;
-                const yOffset = index * 18;
+                const yOffset = index * 14;
                 const zOffset = -index * 30;
                 const scale = 1 - index * 0.045;
                 const rotate = index === 0 ? 0 : index === 1 ? -2.5 : 2.8;
@@ -371,31 +371,31 @@ export const DiwaliChapter: React.FC<DiwaliChapterProps> = ({
                         handleTapStanzaDeck();
                       }
                     }}
-                    className={`absolute inset-x-0 top-0 rounded-2xl border p-8 sm:p-10 transition-shadow select-none ${
+                    className={`absolute inset-x-0 top-0 rounded-2xl border p-5 sm:p-8 md:p-10 transition-shadow select-none ${
                       isTopCard
                         ? 'border-amber-400/80 bg-gradient-to-b from-[#2A141F] to-[#190B12] shadow-[0_26px_50px_rgba(0,0,0,0.65)] cursor-pointer'
                         : 'border-amber-500/25 bg-[#180C12] pointer-events-none'
                     }`}
                   >
-                    <div className="flex items-center justify-between text-xs text-amber-300/90">
+                    <div className="flex flex-wrap items-center justify-between gap-1 text-[11px] sm:text-xs text-amber-300/90">
                       <span>{card.numberLabel}</span>
                       <span className="inline-flex items-center gap-1.5 font-medium text-amber-300">
-                        <Layers className="h-3.5 w-3.5" />
-                        <span>Tap 3D card to draw next stanza</span>
+                        <Layers className="h-3.5 w-3.5 shrink-0" />
+                        <span>Tap card for next stanza</span>
                       </span>
                     </div>
 
-                    <h2 className="mt-3 font-serif-display text-3xl font-semibold text-[#FFFBF5] sm:text-4xl">
+                    <h2 className="mt-2.5 sm:mt-3 font-serif-display text-2xl font-semibold text-[#FFFBF5] sm:text-4xl">
                       {card.title}
                     </h2>
 
-                    <div className="mt-6 space-y-2.5 font-serif-display text-xl italic leading-relaxed text-[#F5E6D8] sm:text-2xl">
+                    <div className="mt-4 sm:mt-6 space-y-2 sm:space-y-2.5 font-serif-display text-base italic leading-relaxed text-[#F5E6D8] sm:text-2xl">
                       {card.lines.map((line, idx) => (
                         <p key={idx}>{line}</p>
                       ))}
                     </div>
 
-                    <div className="mt-6 pt-4 border-t border-amber-500/20 flex items-center justify-between text-xs text-amber-200/80">
+                    <div className="mt-4 sm:mt-6 pt-3 sm:pt-4 border-t border-amber-500/20 flex flex-wrap items-center justify-between gap-2 text-[11px] sm:text-xs text-amber-200/80">
                       <span>{card.closingWhisper}</span>
                       <span className="font-mono tabular-nums">
                         Flips: {deckTapCount}
@@ -511,17 +511,17 @@ export const DiwaliChapter: React.FC<DiwaliChapterProps> = ({
               </motion.div>
             </div>
 
-            {/* CIRCULAR / ROUND ORDER OF 3D DIYAS (SCALED FOR MOBILE SCREEN WIDTH) */}
+            {/* CIRCULAR / ROUND ORDER OF 3D DIYAS (SCALED FOR ALL MOBILE & DESKTOP SCREEN WIDTHS) */}
             <div className="relative z-20 w-full overflow-hidden py-2 sm:py-4 lg:col-span-9">
               <div
                 data-testid="round-diya-circle"
-                className="relative mx-auto h-[380px] w-[340px] max-w-full sm:h-[500px] sm:w-[500px] lg:h-[580px] lg:w-[620px] flex items-center justify-center"
+                className="relative mx-auto h-[350px] min-[380px]:h-[380px] w-full max-w-[340px] sm:h-[500px] sm:max-w-[500px] lg:h-[580px] lg:max-w-[620px] flex items-center justify-center"
               >
                 {/* Glowing Decorative Circular Orbit Rings */}
-                <div className="pointer-events-none absolute h-[270px] w-[270px] sm:h-[390px] sm:w-[390px] lg:h-[460px] lg:w-[460px] rounded-full border border-dashed border-amber-400/35 shadow-[0_0_70px_rgba(245,158,11,0.14)_inset]" />
-                <div className="pointer-events-none absolute h-[130px] w-[130px] sm:h-[180px] sm:w-[180px] lg:h-[210px] lg:w-[210px] rounded-full border border-amber-500/20 bg-amber-500/[0.03] flex flex-col items-center justify-center p-2 sm:p-6 text-center">
-                  <Sparkles className="h-4 w-4 sm:h-6 sm:w-6 text-amber-300/80" />
-                  <span className="mt-0.5 font-serif-display text-base sm:text-2xl font-semibold text-amber-200">
+                <div className="pointer-events-none absolute h-[236px] w-[236px] min-[380px]:h-[270px] min-[380px]:w-[270px] sm:h-[390px] sm:w-[390px] lg:h-[460px] lg:w-[460px] rounded-full border border-dashed border-amber-400/35 shadow-[0_0_70px_rgba(245,158,11,0.14)_inset]" />
+                <div className="pointer-events-none absolute h-[116px] w-[116px] min-[380px]:h-[130px] min-[380px]:w-[130px] sm:h-[180px] sm:w-[180px] lg:h-[210px] lg:w-[210px] rounded-full border border-amber-500/20 bg-amber-500/[0.03] flex flex-col items-center justify-center p-2 sm:p-6 text-center">
+                  <Sparkles className="h-3.5 w-3.5 sm:h-6 sm:w-6 text-amber-300/80" />
+                  <span className="mt-0.5 font-serif-display text-sm min-[380px]:text-base sm:text-2xl font-semibold text-amber-200">
                     {progress.litCount} / {progress.totalCount} Lit
                   </span>
                   <span className="text-[8px] sm:text-[11px] text-amber-100/70">
@@ -544,8 +544,8 @@ export const DiwaliChapter: React.FC<DiwaliChapterProps> = ({
                       }}
                       type="button"
                       style={{
-                        left: `calc(50% + var(--circle-radius, 120px) * ${cosVal})`,
-                        top: `calc(50% + var(--circle-radius, 120px) * ${sinVal})`,
+                        left: `calc(50% + var(--circle-radius, 118px) * ${cosVal})`,
+                        top: `calc(50% + var(--circle-radius, 118px) * ${sinVal})`,
                       }}
                       initial={{ opacity: 0, scale: 0.7 }}
                       whileInView={{ opacity: 1, scale: 1 }}
@@ -555,7 +555,7 @@ export const DiwaliChapter: React.FC<DiwaliChapterProps> = ({
                       onClick={() => triggerDiyaIgnition(diya)}
                       aria-pressed={diya.lit}
                       aria-label={`Light ${diya.label} with 3D candle`}
-                      className={`[--circle-radius:120px] sm:[--circle-radius:180px] lg:[--circle-radius:220px] -translate-x-1/2 -translate-y-1/2 absolute z-20 flex w-24 sm:w-36 lg:w-44 flex-col items-center rounded-xl sm:rounded-2xl border p-1.5 sm:p-3 lg:p-4 text-center transition-shadow cursor-pointer card-3d-surface ${
+                      className={`[--circle-radius:102px] min-[380px]:[--circle-radius:118px] sm:[--circle-radius:180px] lg:[--circle-radius:220px] -translate-x-1/2 -translate-y-1/2 absolute z-20 flex w-[84px] min-[380px]:w-24 sm:w-36 lg:w-44 flex-col items-center rounded-xl sm:rounded-2xl border p-1.5 sm:p-3 lg:p-4 text-center transition-shadow cursor-pointer card-3d-surface ${
                         diya.lit
                           ? 'border-amber-300 bg-gradient-to-b from-[#331722] to-[#1A0B11] shadow-[0_0_20px_rgba(251,191,36,0.4)]'
                           : 'border-amber-500/35 bg-[#180C12]/95 hover:border-amber-400/75'
@@ -582,7 +582,7 @@ export const DiwaliChapter: React.FC<DiwaliChapterProps> = ({
                         </div>
                         {/* 3D Sculpted Terracotta Bowl */}
                         <div
-                          className={`h-4 w-12 sm:h-7 sm:w-20 lg:h-8 lg:w-24 rounded-b-full border-t-2 shadow-inner transition-colors ${
+                          className={`h-4 w-11 min-[380px]:w-12 sm:h-7 sm:w-20 lg:h-8 lg:w-24 rounded-b-full border-t-2 shadow-inner transition-colors ${
                             diya.lit
                               ? 'border-amber-300 bg-gradient-to-r from-[#9A3412] via-[#D97706] to-[#7C2D12]'
                               : 'border-amber-500/40 bg-gradient-to-r from-[#4B221B] via-[#6D3227] to-[#2B110E]'
@@ -601,7 +601,7 @@ export const DiwaliChapter: React.FC<DiwaliChapterProps> = ({
           </div>
 
           {/* Pop-Up 3D Center Card (Reveals when lighting a diya, then tucks to the side) */}
-          <div className="mt-8 min-h-[160px] flex items-center justify-center">
+          <div className="mt-6 sm:mt-8 min-h-[140px] sm:min-h-[160px] flex items-center justify-center px-2">
             <AnimatePresence mode="wait">
               {activePopupDiya ? (
                 <motion.div
@@ -616,11 +616,11 @@ export const DiwaliChapter: React.FC<DiwaliChapterProps> = ({
                   }}
                   role="status"
                   aria-live="polite"
-                  className="w-full max-w-xl rounded-2xl border border-amber-300/75 bg-gradient-to-r from-[#2D151F] via-[#241019] to-[#2D151F] p-7 shadow-2xl card-3d-surface"
+                  className="w-full max-w-xl rounded-2xl border border-amber-300/75 bg-gradient-to-r from-[#2D151F] via-[#241019] to-[#2D151F] p-5 sm:p-7 shadow-2xl card-3d-surface"
                 >
-                  <div className="flex items-center justify-between text-xs text-amber-300">
+                  <div className="flex flex-wrap items-center justify-between gap-2 text-xs text-amber-300">
                     <span className="inline-flex items-center gap-1.5">
-                      <Flame className="h-4 w-4 fill-amber-400 text-amber-400" />
+                      <Flame className="h-4 w-4 shrink-0 fill-amber-400 text-amber-400" />
                       <span>{activePopupDiya.label} — Revealed!</span>
                     </span>
                     <button
@@ -631,10 +631,10 @@ export const DiwaliChapter: React.FC<DiwaliChapterProps> = ({
                       Tuck to Side Now →
                     </button>
                   </div>
-                  <h3 className="mt-2 font-serif-display text-3xl font-semibold text-[#FFFBF5]">
+                  <h3 className="mt-2 font-serif-display text-2xl sm:text-3xl font-semibold text-[#FFFBF5]">
                     {activePopupDiya.vowTitle}
                   </h3>
-                  <p className="mt-2 font-serif-display text-xl italic text-amber-100">
+                  <p className="mt-2 font-serif-display text-lg sm:text-xl italic text-amber-100">
                     “{activePopupDiya.vowLine}”
                   </p>
                 </motion.div>
@@ -642,7 +642,7 @@ export const DiwaliChapter: React.FC<DiwaliChapterProps> = ({
                 <div className="text-center text-xs text-[#A69080]">
                   {tuckedDiyas.length > 0
                     ? `${tuckedDiyas.length} lit vow card(s) tucked safely on the right edge of your screen.`
-                    : 'Drag the floating 3D candle from the left side onto any diya in the circle to pop up its love note.'}
+                    : 'Drag the floating 3D candle onto any diya in the circle to pop up its love note.'}
                 </div>
               )}
             </AnimatePresence>
@@ -661,7 +661,7 @@ export const DiwaliChapter: React.FC<DiwaliChapterProps> = ({
                 <motion.div
                   key={tucked.id}
                   initial={{ x: 120, opacity: 0 }}
-                  animate={{ x: isExpanded ? 0 : 'calc(100% - 54px)', opacity: 1 }}
+                  animate={{ x: isExpanded ? 0 : 'calc(100% - 46px)', opacity: 1 }}
                   transition={{ type: 'spring', stiffness: 280, damping: 26 }}
                   className="flex items-center"
                 >
@@ -672,10 +672,10 @@ export const DiwaliChapter: React.FC<DiwaliChapterProps> = ({
                     }
                     aria-expanded={isExpanded}
                     aria-label={`Peek at tucked vow card: ${tucked.vowTitle}`}
-                    className="flex items-center gap-3 rounded-l-xl border border-r-0 border-amber-400/50 bg-[#26121B]/95 px-4 py-3 text-left shadow-xl backdrop-blur-md cursor-pointer"
+                    className="flex items-center gap-3 rounded-l-xl border border-r-0 border-amber-400/50 bg-[#26121B]/95 px-3.5 py-2.5 sm:px-4 sm:py-3 text-left shadow-xl backdrop-blur-md cursor-pointer"
                   >
                     <Flame className="h-4 w-4 shrink-0 fill-amber-400 text-amber-400" />
-                    <div className="w-56">
+                    <div className="w-48 sm:w-56">
                       <div className="text-[11px] font-semibold text-amber-300">
                         {tucked.vowTitle}
                       </div>
@@ -696,38 +696,38 @@ export const DiwaliChapter: React.FC<DiwaliChapterProps> = ({
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: false, amount: 0.3 }}
           transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
-          className="mt-32"
+          className="mt-20 sm:mt-32"
         >
           <Tilt3DCard
             intensity={7}
-            className="rounded-2xl border border-amber-400/45 bg-gradient-to-b from-[#251119] to-[#180B10] p-10 text-center card-3d-surface md:p-14"
+            className="rounded-2xl border border-amber-400/45 bg-gradient-to-b from-[#251119] to-[#180B10] p-6 sm:p-10 text-center card-3d-surface md:p-14"
           >
             <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-amber-500/20 text-amber-300 animate-float-slow">
               <Gift className="h-6 w-6" />
             </div>
 
             <h2
-              className="mt-5 font-serif-display text-4xl font-semibold text-[#FFFBF5] sm:text-5xl"
+              className="mt-4 sm:mt-5 font-serif-display text-3xl font-semibold text-[#FFFBF5] sm:text-5xl"
               style={{ textWrap: 'balance' }}
             >
               You Scrolled All the Way Down... Ready to see something?
             </h2>
 
-            <p className="mx-auto mt-3 max-w-[54ch] text-base text-[#E6D7C8]">
+            <p className="mx-auto mt-3 max-w-[54ch] text-sm sm:text-base text-[#E6D7C8]">
               Now that you got your diwali wishes, I have one waiting for you on the next page. Once you step inside, there is no turning back!
             </p>
 
-            <div className="mt-9 flex justify-center">
+            <div className="mt-7 sm:mt-9 flex justify-center">
               <button
                 type="button"
                 onClick={() => {
                   logActivityEvent('surprise_button_clicked', 'Entered the Surprise Date page');
                   onOpenSurprise();
                 }}
-                className="animate-surprise-pulse relative inline-flex items-center gap-2.5 rounded-xl bg-amber-400 px-8 py-4 text-base font-bold text-[#180B10] transition-colors hover:bg-amber-300 whitespace-nowrap shrink-0 cursor-pointer"
+                className="animate-surprise-pulse relative inline-flex w-full sm:w-auto items-center justify-center gap-2.5 rounded-xl bg-amber-400 px-5 py-3.5 sm:px-8 sm:py-4 text-sm sm:text-base font-bold text-[#180B10] transition-colors hover:bg-amber-300 text-center cursor-pointer"
               >
-                <Sparkles className="h-5 w-5" />
-                <span>Click Here — It’s a Surprise!</span>
+                <Sparkles className="h-5 w-5 shrink-0" />
+                <span>Oiee, Click Here</span>
               </button>
             </div>
           </Tilt3DCard>

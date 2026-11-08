@@ -24,9 +24,12 @@ import {
   getPhotoCounts,
 } from '../utils/dateLogic';
 import { Tilt3DCard } from './FloatingDiyaParticles';
+import { NoRainHopeCard } from './NoRainHopeCard';
 
 interface LoveDatePlannerProps {
   submission: DatePlanSubmission;
+  rainHopeCount: number;
+  onIncrementRainHope: () => void;
   onChange: (updated: DatePlanSubmission) => void;
   onSubmitSuccess: () => void;
   onTryToGoBack: () => void;
@@ -69,6 +72,8 @@ const BLUSH_VIBE_OPTIONS = [
 
 export const LoveDatePlanner: React.FC<LoveDatePlannerProps> = ({
   submission,
+  rainHopeCount,
+  onIncrementRainHope,
   onChange,
   onSubmitSuccess,
   onTryToGoBack,
@@ -251,7 +256,7 @@ export const LoveDatePlanner: React.FC<LoveDatePlannerProps> = ({
                 transition={{ type: 'spring', stiffness: 260, damping: 20 }}
                 onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
                 title="Click to scroll to main Blush Meter"
-                className="fixed right-5 bottom-5 z-[9999] cursor-pointer select-none sm:right-8 sm:bottom-8"
+                className="fixed right-3 bottom-3 z-[9999] cursor-pointer select-none sm:right-8 sm:bottom-8"
               >
                 <div className={`relative flex flex-col items-center justify-center ${heartbeatClass}`}>
                   {/* Overflow Shockwave Rings & Bursting Mini Hearts when overflowing */}
@@ -293,7 +298,7 @@ export const LoveDatePlanner: React.FC<LoveDatePlannerProps> = ({
                   )}
 
                   {/* Sculpted 3D Heart Shape SVG with Dynamic Liquid Fill */}
-                  <div className="relative h-28 w-32 drop-shadow-[0_14px_28px_rgba(225,29,72,0.42)] sm:h-32 sm:w-36">
+                  <div className="relative h-24 w-28 drop-shadow-[0_14px_28px_rgba(225,29,72,0.42)] sm:h-32 sm:w-36">
                     <svg
                       viewBox="0 0 120 110"
                       className="h-full w-full overflow-visible"
@@ -370,9 +375,9 @@ export const LoveDatePlanner: React.FC<LoveDatePlannerProps> = ({
           document.body
         )}
 
-      <div className="mx-auto max-w-[1160px] px-6 py-12 md:py-16">
+      <div className="mx-auto max-w-[1160px] px-4 py-8 sm:px-6 sm:py-12 md:py-16">
         {/* Top bar with Back Intercept */}
-        <div className="mb-6 flex items-center justify-between">
+        <div className="mb-6 flex flex-wrap items-center justify-between gap-2">
           <button
             type="button"
             onClick={onTryToGoBack}
@@ -382,7 +387,7 @@ export const LoveDatePlanner: React.FC<LoveDatePlannerProps> = ({
             <span>Go Back</span>
           </button>
 
-          <div className="flex items-center gap-2 text-xs text-rose-800/80">
+          <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 text-xs text-rose-800/80">
             <span>For Mine</span>
             <span aria-hidden="true">·</span>
             <span>Monday, 9th November 2026</span>
@@ -413,6 +418,14 @@ export const LoveDatePlanner: React.FC<LoveDatePlannerProps> = ({
               <p className="mt-3 max-w-[62ch] text-base leading-relaxed text-[#6B293B]">
                 Watch my Blush Rate on the right start low and climb higher with every single thing you choose—from picking our time for Monday, 9th November 2026 to showing me your dress, our plan, your love note, and your photo!
               </p>
+
+              {/* Synced Hope for No Rain Tomorrow Counter */}
+              <div className="mt-6">
+                <NoRainHopeCard
+                  rainHopeCount={rainHopeCount}
+                  onIncrementRainHope={onIncrementRainHope}
+                />
+              </div>
             </div>
 
             {/* OVERSIZED 3D FLOATING CURRENT BLUSH RATE DISPLAY (Beats Slower by Default, Beats Faster with Overflow Animation on Overflow) */}
@@ -492,14 +505,14 @@ export const LoveDatePlanner: React.FC<LoveDatePlannerProps> = ({
                 {/* Live Total Photos Added Counter */}
                 <div
                   data-testid="total-photos-counter"
-                  className={`mt-3 flex items-center justify-between rounded-xl border px-3.5 py-2 text-xs font-semibold ${
+                  className={`mt-3 flex flex-wrap items-center justify-between gap-1.5 rounded-xl border px-3.5 py-2 text-xs font-semibold ${
                     blushStats.isOverflowing
                       ? 'border-amber-300/35 bg-black/25 text-amber-200'
                       : 'border-rose-200 bg-rose-50/70 text-rose-900'
                   }`}
                 >
                   <span className="inline-flex items-center gap-1.5">
-                    <Camera className="h-3.5 w-3.5" />
+                    <Camera className="h-3.5 w-3.5 shrink-0" />
                     <span>Total Photos Added:</span>
                   </span>
                   <span className="font-mono font-bold tabular-nums">
@@ -1022,7 +1035,7 @@ export const LoveDatePlanner: React.FC<LoveDatePlannerProps> = ({
                       key={activity}
                       type="button"
                       onClick={() => handleToggleActivity(activity)}
-                      className={`rounded-lg border px-3.5 py-2 text-xs font-medium transition-colors whitespace-nowrap shrink-0 cursor-pointer ${
+                      className={`rounded-lg border px-3 py-2 text-left text-xs font-medium transition-colors cursor-pointer ${
                         isSelected
                           ? 'border-[#E11D48] bg-[#E11D48] text-white'
                           : 'border-rose-200 bg-rose-50/50 text-rose-900 hover:bg-rose-100/70'
@@ -1183,18 +1196,18 @@ export const LoveDatePlanner: React.FC<LoveDatePlannerProps> = ({
           >
             <Tilt3DCard
               intensity={6}
-              className="flex flex-col items-start justify-between gap-6 rounded-2xl border border-rose-200 bg-rose-950 p-8 text-white card-3d-love sm:flex-row sm:items-center"
+              className="flex flex-col items-stretch justify-between gap-6 rounded-2xl border border-rose-200 bg-rose-950 p-6 sm:p-8 text-white card-3d-love sm:flex-row sm:items-center"
             >
               <div>
                 <div className="flex items-center gap-2 text-xs text-rose-200">
-                  <Sparkles className="h-4 w-4 text-rose-300" />
+                  <Sparkles className="h-4 w-4 shrink-0 text-rose-300" />
                   <span>
                     {blushStats.isOverflowing
                       ? `BLUSH METER OVERFLOWING AT ${blushStats.score}% — PLEASE DON'T KILL ME!`
                       : `Current Blush Rate: ${blushStats.score}% (Fill all steps to overflow past 100%!)`}
                   </span>
                 </div>
-                <p className="mt-1 font-serif-display text-2xl font-semibold">
+                <p className="mt-1 font-serif-display text-xl sm:text-2xl font-semibold">
                   {blushStats.isOverflowing
                     ? 'You Did Everything! Please Don’t Kill Me With This Much Cuteness!'
                     : 'Create Our Official Date Pass & Send Me Your Blush Card'}
@@ -1203,9 +1216,9 @@ export const LoveDatePlanner: React.FC<LoveDatePlannerProps> = ({
 
               <button
                 type="submit"
-                className="inline-flex items-center gap-2.5 rounded-xl bg-[#E11D48] px-7 py-4 text-sm font-semibold text-white shadow-[0_12px_28px_rgba(225,29,72,0.45)] transition-transform hover:scale-105 hover:bg-[#BE123C] whitespace-nowrap shrink-0 cursor-pointer"
+                className="inline-flex w-full sm:w-auto items-center justify-center gap-2.5 rounded-xl bg-[#E11D48] px-5 py-3.5 sm:px-7 sm:py-4 text-xs sm:text-sm font-semibold text-white shadow-[0_12px_28px_rgba(225,29,72,0.45)] transition-transform hover:scale-105 hover:bg-[#BE123C] text-center cursor-pointer"
               >
-                <MessageSquareHeart className="h-4 w-4" />
+                <MessageSquareHeart className="h-4 w-4 shrink-0" />
                 <span>Seal Our 9th Nov Date &amp; Send to Him</span>
               </button>
             </Tilt3DCard>

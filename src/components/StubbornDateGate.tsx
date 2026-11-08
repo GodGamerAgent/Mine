@@ -3,9 +3,12 @@ import { motion } from 'motion/react';
 import { Heart, CalendarHeart, Sparkles, ArrowLeft, CheckCircle2 } from 'lucide-react';
 import { getStubbornState } from '../utils/dateLogic';
 import { Tilt3DCard } from './FloatingDiyaParticles';
+import { NoRainHopeCard } from './NoRainHopeCard';
 
 interface StubbornDateGateProps {
   noCount: number;
+  rainHopeCount: number;
+  onIncrementRainHope: () => void;
   onAttemptNo: () => void;
   onAcceptYes: () => void;
   onTryToGoBack: () => void;
@@ -15,6 +18,8 @@ const ROMANTIC_DATE_IMAGE = '/src/assets/images/romantic_monday_date_17941147103
 
 export const StubbornDateGate: React.FC<StubbornDateGateProps> = ({
   noCount,
+  rainHopeCount,
+  onIncrementRainHope,
   onAttemptNo,
   onAcceptYes,
   onTryToGoBack,
@@ -32,10 +37,10 @@ export const StubbornDateGate: React.FC<StubbornDateGateProps> = ({
   };
 
   return (
-    <div className="perspective-stage min-h-screen bg-[#FFF8F6] text-[#2D0A16] selection:bg-rose-200 selection:text-rose-950">
-      <div className="mx-auto max-w-[1140px] px-6 py-12 md:py-16">
+    <div className="perspective-stage min-h-screen overflow-x-hidden bg-[#FFF8F6] text-[#2D0A16] selection:bg-rose-200 selection:text-rose-950">
+      <div className="mx-auto max-w-[1140px] px-4 py-8 sm:px-6 sm:py-12 md:py-16">
         {/* Top bar inside Surprise Page: Trying to go back triggers the Cute No-Back Intercept Page */}
-        <div className="mb-8 flex items-center justify-between">
+        <div className="mb-6 sm:mb-8 flex flex-wrap items-center justify-between gap-2">
           <button
             type="button"
             onClick={onTryToGoBack}
@@ -45,7 +50,7 @@ export const StubbornDateGate: React.FC<StubbornDateGateProps> = ({
             <span>Go Back</span>
           </button>
 
-          <div className="flex items-center gap-2 text-xs text-rose-800/80">
+          <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 text-xs text-rose-800/80">
             <span>For Mine · Your Surprise</span>
             <span aria-hidden="true">·</span>
             <span>Monday, 9th November 2026</span>
@@ -57,27 +62,40 @@ export const StubbornDateGate: React.FC<StubbornDateGateProps> = ({
           initial={{ opacity: 0, y: 32 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
-          className="grid grid-cols-1 items-stretch gap-12 pt-4 lg:grid-cols-12"
+          className="grid grid-cols-1 items-stretch gap-8 sm:gap-12 pt-2 sm:pt-4 lg:grid-cols-12"
         >
-          {/* Left Column: Stubborn Proposal Card (No parent pointer-tilt transform so Yes & No buttons always receive direct clicks reliably) */}
-          <div className="flex flex-col justify-between rounded-2xl border border-rose-200 bg-white p-8 shadow-[0_22px_44px_-16px_rgba(136,19,55,0.16)] lg:col-span-7">
+          {/* Left Column: Stubborn Proposal Card */}
+          <div
+            onMouseDown={(e) => {
+              if (e.detail > 1) e.preventDefault();
+            }}
+            className="select-none flex flex-col justify-between rounded-2xl border border-rose-200 bg-white p-5 sm:p-8 shadow-[0_22px_44px_-16px_rgba(136,19,55,0.16)] lg:col-span-7"
+          >
             <div>
-              <div className="flex items-center gap-2 text-xs font-medium text-rose-700">
-                <CalendarHeart className="h-4 w-4 text-rose-600" />
+              <div className="flex flex-wrap items-center gap-2 text-xs font-medium text-rose-700">
+                <CalendarHeart className="h-4 w-4 shrink-0 text-rose-600" />
                 <span>For Mine · Official Romantic Summons · 9th Nov 2026 · Monday</span>
               </div>
 
               <h1
                 data-testid="stubborn-heading"
-                className="mt-4 font-serif-display text-4xl font-semibold leading-[1.12] tracking-tight text-[#330816] sm:text-5xl lg:text-[3.35rem]"
+                className="mt-3 sm:mt-4 font-serif-display text-3xl font-semibold leading-[1.12] tracking-tight text-[#330816] sm:text-5xl lg:text-[3.35rem]"
                 style={{ textWrap: 'balance' }}
               >
                 {stubborn.message}
               </h1>
 
-              <p className="mt-5 max-w-[58ch] text-base leading-relaxed text-[#6B293B]">
+              <p className="mt-4 sm:mt-5 max-w-[58ch] text-sm sm:text-base leading-relaxed text-[#6B293B]">
                 {stubborn.subtext}
               </p>
+
+              {/* Hope for No Rain Tomorrow Interactive Counter Card */}
+              <div className="mt-6">
+                <NoRainHopeCard
+                  rainHopeCount={rainHopeCount}
+                  onIncrementRainHope={onIncrementRainHope}
+                />
+              </div>
 
               {/* Playful Stubborn Attempt Counter */}
               {noCount > 0 && (
@@ -87,9 +105,9 @@ export const StubbornDateGate: React.FC<StubbornDateGateProps> = ({
                   animate={{ opacity: 1, scale: 1, y: 0 }}
                   role="status"
                   aria-live="polite"
-                  className="mt-6 rounded-xl border border-rose-300 bg-rose-50 p-4 text-sm text-rose-900 shadow-xs"
+                  className="mt-5 sm:mt-6 rounded-xl border border-rose-300 bg-rose-50 p-3.5 sm:p-4 text-xs sm:text-sm text-rose-900 shadow-xs"
                 >
-                  <div className="flex items-center justify-between">
+                  <div className="flex flex-wrap items-center justify-between gap-1">
                     <span className="font-semibold">
                       {stubborn.noConvertedToYes
                         ? 'Stubbornness Complete: Both Buttons Are Now YES!'
@@ -109,12 +127,12 @@ export const StubbornDateGate: React.FC<StubbornDateGateProps> = ({
             </div>
 
             {/* Interactive Yes / Stubborn No Action Zone */}
-            <div className="mt-10 pt-8 border-t border-rose-200/80">
-              <div className="text-xs text-rose-700/90 mb-5">
+            <div className="mt-6 sm:mt-8 pt-6 border-t border-rose-200/80">
+              <div className="text-xs text-rose-700/90 mb-4 sm:mb-5">
                 Please select your answer below to unlock our Monday Date Planner:
               </div>
 
-              <div className="relative flex min-h-[120px] flex-wrap items-center gap-8">
+              <div className="relative flex min-h-[110px] flex-wrap items-center justify-start gap-4 sm:gap-8">
                 {/* Primary 3D YES Button */}
                 <motion.button
                   type="button"
@@ -123,9 +141,9 @@ export const StubbornDateGate: React.FC<StubbornDateGateProps> = ({
                   animate={{ scale: stubborn.yesScale }}
                   transition={{ type: 'spring', stiffness: 300, damping: 20 }}
                   style={{ transformOrigin: 'left center' }}
-                  className="relative z-20 inline-flex items-center gap-2.5 rounded-xl bg-[#E11D48] px-6 py-3.5 text-sm font-semibold text-white shadow-[0_12px_24px_rgba(225,29,72,0.35)] hover:bg-[#BE123C] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-rose-600 whitespace-nowrap shrink-0 cursor-pointer"
+                  className="relative z-20 inline-flex items-center justify-center gap-2 rounded-xl bg-[#E11D48] px-5 py-3.5 sm:px-6 text-xs sm:text-sm font-semibold text-white shadow-[0_12px_24px_rgba(225,29,72,0.35)] hover:bg-[#BE123C] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-rose-600 text-center cursor-pointer"
                 >
-                  <Heart className="h-4 w-4 fill-white text-white" />
+                  <Heart className="h-4 w-4 shrink-0 fill-white text-white" />
                   <span>{stubborn.yesButtonLabel}</span>
                 </motion.button>
 
@@ -139,13 +157,13 @@ export const StubbornDateGate: React.FC<StubbornDateGateProps> = ({
                     y: stubborn.noOffset.y,
                   }}
                   transition={{ type: 'spring', stiffness: 340, damping: 22 }}
-                  className={`relative z-30 inline-flex items-center gap-2 rounded-xl px-5 py-3 text-sm font-medium whitespace-nowrap shrink-0 cursor-pointer ${
+                  className={`relative z-30 inline-flex items-center justify-center gap-2 rounded-xl px-4 py-3 sm:px-5 text-xs sm:text-sm font-medium text-center cursor-pointer ${
                     stubborn.noConvertedToYes
                       ? 'bg-rose-900 text-white hover:bg-rose-800 font-semibold shadow-md'
                       : 'border-2 border-rose-300 bg-white text-rose-800 shadow-sm hover:border-rose-400 hover:bg-rose-50'
                   }`}
                 >
-                  {stubborn.noConvertedToYes && <CheckCircle2 className="h-4 w-4 text-rose-200" />}
+                  {stubborn.noConvertedToYes && <CheckCircle2 className="h-4 w-4 shrink-0 text-rose-200" />}
                   <span>{stubborn.noButtonLabel}</span>
                 </motion.button>
               </div>

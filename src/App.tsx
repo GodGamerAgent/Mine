@@ -50,6 +50,7 @@ export default function App() {
     INITIAL_DIYAS.map((d) => ({ ...d, lit: false }))
   );
   const [noCount, setNoCount] = useState<number>(0);
+  const [rainHopeCount, setRainHopeCount] = useState<number>(0);
   const [wrongPasswordChoice, setWrongPasswordChoice] = useState<string>('');
   const [submission, setSubmission] = useState<DatePlanSubmission>(INITIAL_SUBMISSION);
   const [lastSurpriseStep, setLastSurpriseStep] = useState<'proposal' | 'planner' | 'keepsake'>('proposal');
@@ -127,6 +128,20 @@ export default function App() {
     setActiveChapter('no-back');
   };
 
+  const handleIncrementRainHope = () => {
+    setRainHopeCount((prev) => {
+      if (prev >= 30) return 30;
+      const next = prev + 1;
+      if (next === 1 || next === 3 || next === 10 || next === 20 || next === 30) {
+        logActivityEvent(
+          'hope_no_rain_clicked',
+          `Clicked "Hope for No Rain Tomorrow" (${next}/30 time${next === 1 ? '' : 's'})`
+        );
+      }
+      return next;
+    });
+  };
+
   const isDiwaliTheme =
     activeChapter === 'password' ||
     activeChapter === 'intruder' ||
@@ -169,6 +184,8 @@ export default function App() {
         {activeChapter === 'proposal' && (
           <StubbornDateGate
             noCount={noCount}
+            rainHopeCount={rainHopeCount}
+            onIncrementRainHope={handleIncrementRainHope}
             onAttemptNo={() => {
               const next = noCount + 1;
               setNoCount(next);
@@ -182,6 +199,8 @@ export default function App() {
         {activeChapter === 'planner' && (
           <LoveDatePlanner
             submission={submission}
+            rainHopeCount={rainHopeCount}
+            onIncrementRainHope={handleIncrementRainHope}
             onChange={setSubmission}
             onSubmitSuccess={handleSealKeepsake}
             onTryToGoBack={handleTryToGoBack}

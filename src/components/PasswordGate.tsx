@@ -25,7 +25,7 @@ export const PasswordGate: React.FC<PasswordGateProps> = ({
   };
 
   return (
-    <div className="perspective-stage relative flex min-h-screen items-center justify-center overflow-hidden bg-[#12090D] px-6 py-16 text-[#FAF3EB]">
+    <div className="perspective-stage relative flex min-h-screen items-center justify-center overflow-hidden bg-[#12090D] px-4 py-10 sm:px-6 sm:py-16 text-[#FAF3EB]">
       <FloatingDiyaParticles />
 
       {/* Ambient warm glow */}
@@ -46,33 +46,33 @@ export const PasswordGate: React.FC<PasswordGateProps> = ({
         <Tilt3DCard
           intensity={6}
           data-testid="password-gate-card"
-          className="rounded-3xl border border-amber-400/40 bg-[#1B0D14]/90 p-8 text-center backdrop-blur-md card-3d-surface sm:p-12"
+          className="rounded-3xl border border-amber-400/40 bg-[#1B0D14]/90 p-6 text-center backdrop-blur-md card-3d-surface sm:p-12"
         >
-          <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl border border-amber-400/40 bg-amber-500/15 text-amber-300 shadow-inner">
-            <Lock className="h-6 w-6" />
+          <div className="mx-auto flex h-12 w-12 sm:h-14 sm:w-14 items-center justify-center rounded-2xl border border-amber-400/40 bg-amber-500/15 text-amber-300 shadow-inner">
+            <Lock className="h-5 w-5 sm:h-6 sm:w-6" />
           </div>
 
-          <div className="mt-4 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-amber-300">
-            <Sparkles className="h-3.5 w-3.5" />
+          <div className="mt-4 inline-flex flex-wrap items-center justify-center gap-1.5 sm:gap-2 text-[10px] sm:text-xs font-semibold uppercase tracking-widest text-amber-300">
+            <Sparkles className="h-3.5 w-3.5 shrink-0" />
             <span>For Mine · Secret Password Verification</span>
-            <Sparkles className="h-3.5 w-3.5" />
+            <Sparkles className="h-3.5 w-3.5 shrink-0" />
           </div>
 
           <h1
-            className="mt-3 font-serif-display text-4xl font-semibold text-[#FFFBF5] sm:text-5xl"
+            className="mt-3 font-serif-display text-3xl font-semibold text-[#FFFBF5] sm:text-5xl"
             style={{ textWrap: 'balance' }}
           >
             Wait! Choose the Secret Password Before Entering
           </h1>
 
-          <p className="mx-auto mt-3 max-w-[50ch] text-sm leading-relaxed text-[#E6D7C8] sm:text-base">
+          <p className="mx-auto mt-3 max-w-[50ch] text-xs leading-relaxed text-[#E6D7C8] sm:text-base">
             This private space belongs exclusively to my girl. Pick the right word below to unlock your surprise—choose carefully!
           </p>
 
           {/* Password Option Buttons Grid */}
           <div
             data-testid="password-options-grid"
-            className="mt-8 grid grid-cols-2 gap-3.5 sm:grid-cols-4"
+            className="mt-6 sm:mt-8 grid grid-cols-2 gap-2.5 sm:gap-3.5 sm:grid-cols-4"
           >
             {PASSWORD_OPTIONS.map((option) => (
               <button
@@ -80,7 +80,7 @@ export const PasswordGate: React.FC<PasswordGateProps> = ({
                 type="button"
                 data-testid={`password-option-${option}`}
                 onClick={() => handleSelectOption(option)}
-                className="group relative flex flex-col items-center justify-center gap-1.5 rounded-2xl border border-amber-400/30 bg-[#25121B] px-4 py-4 text-sm font-semibold text-[#FFFBF5] shadow-md transition-all hover:-translate-y-1 hover:border-amber-400 hover:bg-amber-400 hover:text-[#180B10] cursor-pointer"
+                className="group relative flex flex-col items-center justify-center gap-1.5 rounded-2xl border border-amber-400/30 bg-[#25121B] px-3 py-3.5 sm:px-4 sm:py-4 text-xs sm:text-sm font-semibold text-[#FFFBF5] shadow-md transition-all hover:-translate-y-1 hover:border-amber-400 hover:bg-amber-400 hover:text-[#180B10] cursor-pointer"
               >
                 <Heart className="h-3.5 w-3.5 text-amber-400 transition-colors group-hover:fill-[#180B10] group-hover:text-[#180B10]" />
                 <span>{option}</span>
@@ -88,7 +88,7 @@ export const PasswordGate: React.FC<PasswordGateProps> = ({
             ))}
           </div>
 
-          <p className="mt-7 text-xs text-[#A69080]">
+          <p className="mt-6 sm:mt-7 text-xs text-[#A69080]">
             Hint: Only the real one knows the exact word we always say.
           </p>
         </Tilt3DCard>
