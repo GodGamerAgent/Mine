@@ -1,0 +1,6 @@
+{
+  "name": "Diwali Lights & Our Monday Date",
+  "description": "A poetic Diwali love letter and interactive romantic planner for our Monday, 9th November 2026 date.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
